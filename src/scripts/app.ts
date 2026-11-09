@@ -260,7 +260,7 @@ for (const b of $$<HTMLButtonElement>('[data-pick]')) {
     syncOrderFromState();
     render();
     announce();
-    $('#topo')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    $('#monte')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
   });
 }
 
@@ -297,14 +297,27 @@ for (const el of $$('.controls input, .controls label')) {
   el.addEventListener('pointerdown', stopDemo, { once: true });
   el.addEventListener('focus', stopDemo, { once: true });
 }
+let demoStarted = false;
 const startDemo = () => {
-  if (!document.hidden && state.demo) runDemo();
+  if (demoStarted || document.hidden || !state.demo) return;
+  demoStarted = true;
+  runDemo();
 };
-if (revealed()) startDemo();
-else window.addEventListener('duo:reveal', () => setTimeout(startDemo, 600), { once: true });
+// só digita sozinha quando a pessoa chega na seção (e só uma vez)
+if (root && 'IntersectionObserver' in window) {
+  new IntersectionObserver(
+    (entries, obs) => {
+      if (entries.some((en) => en.isIntersecting) && revealed()) {
+        startDemo();
+        obs.disconnect();
+      }
+    },
+    { threshold: 0.35 },
+  ).observe(root);
+}
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) clearTimeout(demoT);
-  else if (state.demo && revealed()) runDemo();
+  else if (state.demo && demoStarted && revealed()) runDemo();
 });
 
 /* ------------------------------------------------------------------ */
@@ -366,30 +379,21 @@ function updatePreview() {
   if (preview) preview.textContent = buildMessage();
 }
 
-const heroStatus = $('[data-wa-status]');
-const heroStatusText = $('[data-wa-status-text]');
-const heroAnnounce = $('[data-wa-announce]');
 const MISSING =
   'O WhatsApp da DUO ainda não foi configurado neste site. Copie a mensagem e mande para a gente pelo número que você já tem.';
 
 // Sem WhatsApp configurado, todo botão explica em vez de apontar para um número falso:
-// no herói o aviso aparece ali mesmo; nos outros, a página vai ao pedido e o aviso aparece lá.
+// a página vai ao pedido e o aviso aparece lá.
 $$<HTMLAnchorElement>('[data-wa-link]').forEach((a) =>
   a.addEventListener('click', (e) => {
     if (cfg.wa) return;
     e.preventDefault();
-    if (a.closest('.hero') && heroStatus && heroStatusText) {
-      heroStatusText.textContent = MISSING;
-      heroStatus.hidden = false;
-      if (heroAnnounce) heroAnnounce.textContent = MISSING;
-      return;
-    }
     $('#pedido')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
     if (orderStatus) orderStatus.textContent = MISSING;
   }),
 );
 
-async function copyMessage(target: Element | null) {
+async function copyMessage() {
   const text = buildMessage();
   let ok = false;
   try {
@@ -411,11 +415,9 @@ async function copyMessage(target: Element | null) {
     ta.remove();
   }
   const msg = ok ? 'Mensagem copiada. É só colar no WhatsApp.' : 'Não deu para copiar. Selecione o texto do bilhete e copie.';
-  const box = target?.closest('.wa-status') ? heroStatusText : orderStatus;
-  if (box) box.textContent = msg;
-  if (box === heroStatusText && heroAnnounce) heroAnnounce.textContent = msg;
+  if (orderStatus) orderStatus.textContent = msg;
 }
-for (const b of $$('[data-copy-msg]')) b.addEventListener('click', () => copyMessage(b));
+for (const b of $$('[data-copy-msg]')) b.addEventListener('click', () => copyMessage());
 
 /* ---- validação: ao sair do campo e ao enviar ---- */
 const rules: { el: HTMLInputElement | HTMLSelectElement | null; id: string; label: string; check: (v: string) => string }[] = [
@@ -560,46 +562,25 @@ if ('IntersectionObserver' in window && reveals.length) {
   reveals.forEach((el) => el.classList.add('in'));
 }
 
-// história: passos conforme a rolagem
-const story = $('[data-story]');
-if (story && !reduced) {
-  const track = $('.story__track', story)!;
-  let ticking = false;
-  const update = () => {
-    ticking = false;
-    const r = track.getBoundingClientRect();
-    const total = r.height - window.innerHeight;
-    const p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
-    const step = p < 0.34 ? 1 : p < 0.67 ? 2 : 3;
-    if (story.dataset.step !== String(step)) story.dataset.step = String(step);
-    story.style.setProperty('--p', p.toFixed(3));
-    // entrou: o palco já ocupa boa parte da tela (o chão vira roxo e os corações começam a bater)
-    story.classList.toggle('is-in', r.top < window.innerHeight * 0.6 && r.bottom > window.innerHeight * 0.25);
-  };
-  const req = () => {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
-    }
-  };
-  addEventListener('scroll', req, { passive: true });
-  addEventListener('resize', req);
-  update();
-}
-
-// barra fixa do celular: aparece depois do herói e some no formulário
+// barra fixa do celular: aparece quando o botão do herói sai da tela e some no formulário
 const sticky = $('[data-sticky-cta]');
 const heroCta = $('.hero__cta');
 const orderSection = $('#pedido');
 if (sticky && heroCta) {
+  let heroIn = true;
   let orderIn = false;
   const apply = () => {
-    const show = !orderIn;
+    const show = !heroIn && !orderIn;
     sticky.classList.toggle('is-visible', show);
     sticky.setAttribute('aria-hidden', String(!show));
     $('a', sticky)?.setAttribute('tabindex', show ? '0' : '-1');
   };
   apply();
+  // o botão do herói só conta como "à vista" acima da faixa onde a barra fixa ficaria
+  new IntersectionObserver(([en]) => {
+    heroIn = en.isIntersecting;
+    apply();
+  }, { rootMargin: '0px 0px -84px 0px' }).observe(heroCta);
   if (orderSection) {
     new IntersectionObserver(([en]) => {
       orderIn = en.isIntersecting;

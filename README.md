@@ -27,7 +27,6 @@ A pasta `dist/` é o site pronto: suba o conteúdo dela em qualquer hospedagem (
 
 Escrevi estes textos sem saber os detalhes do negócio. Troque o que não for verdade:
 
-- A explicação do slogan (seção em roxo): dois corações, dois objetivos, um propósito.
 - Os quatro passos de "Como funciona": a DUO responde com orçamento, ajusta a arte com o cliente e combina a entrega.
 - Os textos curtos das peças (camiseta, ecobag, bolsa, copo).
 - "Valores, prazos e formas de pagamento a gente combina no WhatsApp": nenhum preço, prazo ou técnica de estampa foi inventado.
@@ -47,7 +46,8 @@ O site usa **Poppins** (pesos 400 a 800), escolhida por ser a mais parecida com 
 
 ## Animações
 
-- **Primeira tela:** o slogan sobe linha a linha, os números sorteiam e pousam, a camisa digita sozinha uma vez e para. Com mouse, a camisa e os corações inclinam e a luz nos furinhos do fundo segue o cursor.
+- **Primeira tela (limpa):** o slogan sobe linha a linha, os números sorteiam e pousam, e as quatro peças (camiseta, ecobag, bolsa e copo) flutuam sobre um disco roxo. Com mouse, as peças se movem em profundidades diferentes e a luz nos furinhos do fundo segue o cursor.
+- **Monte a sua:** mais abaixo, a peça ao vivo digita sozinha uma vez quando aparece; é onde se escreve nome e número e se escolhe peça e cor.
 - **Camisa que gira:** logo depois da primeira tela, a camiseta gira com a rolagem (peito com o logo, costas com nome e número) e troca de cor (preta, branca, roxa), enquanto ecobag, bolsa e copo flutuam em ritmos diferentes.
 - **Mouse:** cursor próprio (ponto e anel), botões que puxam o cursor, peças e figurinhas que inclinam. Só liga com mouse de verdade e sem "reduzir movimento".
 - **Celular e tela pequena:** os tamanhos acompanham a largura da tela (de 320 px a telas grandes), sem rolagem lateral. Quem desativa animações no sistema vê tudo parado e legível.
@@ -55,10 +55,10 @@ O site usa **Poppins** (pesos 400 a 800), escolhida por ser a mais parecida com 
 ## Onde mexer no visual
 
 - Cores, espaços, fontes e movimento: `src/styles/global.css` (variáveis no início).
-- Primeira tela: `src/components/Hero.astro`. Camisa que gira: `src/components/ShirtTurn.astro`. Efeitos de mouse e de rolagem: `src/scripts/fx.ts`.
+- Primeira tela: `src/components/Hero.astro`. Prévia e controles: `src/components/Studio.astro`. Camisa que gira: `src/components/ShirtTurn.astro`. Efeitos de mouse e de rolagem: `src/scripts/fx.ts`.
 - Letras de aplique (os números grandes): `src/components/Twill.astro`.
 - Peças (camiseta, ecobag, bolsa, copo): `src/components/Piece.astro`.
-- Comportamento (prévia, formulário, entrada, história): `src/scripts/app.ts`.
+- Comportamento (prévia, formulário, entrada, barra fixa do celular): `src/scripts/app.ts`.
 - Imagem de compartilhamento: `tools/og.html` → gera `public/og.png`.
 
 ## Pendências suas

@@ -520,6 +520,10 @@
         "displayName": "Display",
         "purpose": "Palavras do slogan do herói ao lado dos numerais, Poppins 800, minúsculas, -0.045em, clamp(2.05rem, 0.4rem + 6.3vw, 4.7rem)."
       },
+      "display-narrow": {
+        "displayName": "Display estreito",
+        "purpose": "O mesmo slogan abaixo de 62rem, clamp(2.05rem, 0.4rem + 8.4vw, 4rem)."
+      },
       "headline": {
         "displayName": "Título de seção",
         "purpose": "H2 de seção, Poppins 800, minúsculas ou frase, -0.025em e word-spacing 0.1em, clamp(1.9rem, 1.2rem + 3.6vw, 3.9rem)."
@@ -570,7 +574,7 @@
       },
       "small": {
         "displayName": "Texto pequeno",
-        "purpose": "Caixa de status e apoio do pedido, 0.97rem."
+        "purpose": "Textos de apoio e status do pedido, 0.97rem."
       },
       "caption": {
         "displayName": "Legenda",
@@ -579,10 +583,6 @@
       "label": {
         "displayName": "Rótulo de formulário",
         "purpose": "Rótulos de campos e legendas de seletores, 600, 0.72rem, +0.08em, maiúsculas. Só em formulário."
-      },
-      "cue": {
-        "displayName": "Convite a rolar",
-        "purpose": "O texto 'role' do herói, 600, 0.7rem, +0.18em."
       },
       "note": {
         "displayName": "Bilhete",
@@ -773,7 +773,7 @@
       "name": "Campo sobre escuro",
       "kind": "input",
       "refersTo": "field-dark",
-      "description": "Nome e número do herói, entrada em maiúsculas, raio de 14px.",
+      "description": "Nome e número de Monte a sua, entrada em maiúsculas, raio de 14px.",
       "html": "<div class=\"ds-field\"><label for=\"ds-n\">Nome</label><input id=\"ds-n\" type=\"text\" placeholder=\"Digite um nome\"></div>",
       "css": ".ds-field{background:#14121c;padding:1rem;border-radius:22px}.ds-field label{display:block;margin-bottom:.3rem;font:600 .72rem 'Poppins',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.66)}.ds-field input{width:100%;min-height:3rem;padding:.55rem .85rem;background:#0b0b0f;color:#fff;border:1.5px solid rgba(255,255,255,.18);border-radius:14px;font:600 1rem/1.2 'Poppins',system-ui,sans-serif;text-transform:uppercase;transition:border-color .2s}.ds-field input::placeholder{color:rgba(255,255,255,.5);text-transform:none;font-weight:500}.ds-field input:hover{border-color:rgba(255,255,255,.45)}.ds-field input:focus{border-color:#8f5cff;outline:none}.ds-field input:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #7a3cff}"
     },
@@ -791,13 +791,13 @@
       "refersTo": "ticket",
       "description": "Prévia da mensagem que vai para o WhatsApp, sobre o chão dia.",
       "html": "<div class=\"ds-ticket\"><p class=\"ds-ticket-title\">A mensagem que vai para o WhatsApp</p><p class=\"ds-ticket-body\">Oi! Quero 10 camisetas...</p></div>",
-      "css": ".ds-ticket{padding:1rem 1.1rem 1.1rem;background:#efe9ff;border-radius:4px}.ds-ticket-title{margin:0 0 .5rem;font:700 .8rem 'Poppins',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#4a4560}.ds-ticket-body{margin:0;font:400 1rem/1.5 'Poppins',system-ui,sans-serif;color:#0b0b0f;white-space:pre-wrap}"
+      "css": ".ds-ticket{padding:1rem 1.1rem 1.1rem;background:#efe9ff;border-radius:14px}.ds-ticket-title{margin:0 0 .5rem;font:700 .8rem 'Poppins',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#4a4560}.ds-ticket-body{margin:0;font:400 1rem/1.5 'Poppins',system-ui,sans-serif;color:#0b0b0f;white-space:pre-wrap}"
     },
     {
       "name": "Painel de controles",
       "kind": "card",
       "refersTo": "controls-panel",
-      "description": "Painel do herói com campos, peça e cor; raio de 22px e borda tracejada.",
+      "description": "Painel de Monte a sua com campos, peça e cor; raio de 22px e borda tracejada.",
       "html": "<div class=\"ds-panel\"><label>Nome</label><div class=\"ds-panel-in\">Digite um nome</div><div class=\"ds-panel-seg\"><span>Camiseta</span><span class=\"is-on\">Ecobag</span></div></div>",
       "css": ".ds-panel{display:grid;gap:.8rem;width:min(100%,31rem);padding:1.1rem;background:#14121c;border:1.5px dashed rgba(255,255,255,.18);border-radius:22px;color:rgba(255,255,255,.84);font-family:'Poppins',system-ui,sans-serif}.ds-panel label{font:600 .72rem 'Poppins',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.66)}.ds-panel-in{min-height:3rem;padding:.55rem .85rem;background:#0b0b0f;border:1.5px solid rgba(255,255,255,.18);border-radius:14px;color:rgba(255,255,255,.5);display:flex;align-items:center}.ds-panel-seg{display:flex;gap:.4rem}.ds-panel-seg span{flex:1;display:flex;align-items:center;justify-content:center;min-height:2.75rem;border:1.5px dashed rgba(255,255,255,.18);border-radius:999px;font:600 .92rem 'Poppins',sans-serif}.ds-panel-seg .is-on{background:#fff;color:#0b0b0f;border:1.5px solid #fff}"
     }
@@ -811,7 +811,7 @@
       "Aplique em duas camadas com pesponto tracejado para numerais e a estampa das peças.",
       "Uma só família (Poppins), títulos em minúsculas com peso 800 e tracking negativo.",
       "Pílulas (999px) costuradas para botões e abas; campos e painéis em raios de 14, 18 e 22px.",
-      "Movimento que explica: o aplique pousa em duas camadas, a camiseta gira com a rolagem, a peça acompanha o mouse."
+      "Movimento que explica: o aplique pousa em duas camadas, a camiseta gira com a rolagem, as peças acompanham o mouse."
     ],
     "rules": [
       {
@@ -846,7 +846,7 @@
       },
       {
         "name": "A Regra da Profundidade em Z",
-        "body": "Profundidade se faz com translação e inclinação em Z (peça, corações, camiseta), não com sombras empilhadas.",
+        "body": "Profundidade se faz com translação e inclinação em Z (peças, camiseta), não com sombras empilhadas.",
         "section": "elevation"
       }
     ],
@@ -863,7 +863,7 @@
     "donts": [
       "Don't introduzir uma terceira cor de marca além de roxo e branco sobre o preto.",
       "Don't introduzir uma segunda família tipográfica; Mansalva só nas notas do casal.",
-      "Don't abrir seções com a fileira de cartões iguais nem com o mockup de camiseta ao lado de um título; a peça é viva e ligada aos controles.",
+      "Don't abrir seções com a fileira de cartões iguais nem com o mockup de camiseta ao lado de um título; a peça é viva e ligada aos controles de Monte a sua.",
       "Don't usar sombra em repouso nem cantos retos e pequenos em painéis novos.",
       "Don't inventar preço, prazo, técnica, foto ou depoimento; o conteúdo ainda não informado fica em espaço reservado rotulado.",
       "Don't esconder conteúdo atrás de JavaScript: revelações e o giro da camiseta só atuam com a classe js e sem rm, e a leitura funciona sem eles."

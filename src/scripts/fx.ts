@@ -116,7 +116,7 @@ if (turn && !reduced) {
 /* ------------------------------------------------------------------ */
 const hero = $('[data-hero]');
 if (hero && !reduced) {
-  // a peça sobe devagar enquanto o herói sai de cena
+  // as peças sobem devagar enquanto o herói sai de cena
   let hsRaf = 0;
   const hsUpdate = () => {
     hsRaf = 0;
@@ -131,8 +131,11 @@ if (hero && !reduced) {
     { passive: true },
   );
   hsUpdate();
+}
 
-  if (finePointer) {
+// zonas que inclinam e acendem seguindo o mouse (herói e "monte a sua")
+if (finePointer && !reduced) {
+  for (const zone of $$('[data-tilt]')) {
     let tx = 0;
     let ty = 0;
     let cx = 0;
@@ -141,28 +144,28 @@ if (hero && !reduced) {
     const loop = () => {
       cx += (tx - cx) * 0.085;
       cy += (ty - cy) * 0.085;
-      hero.style.setProperty('--tx', cx.toFixed(4));
-      hero.style.setProperty('--ty', cy.toFixed(4));
+      zone.style.setProperty('--tx', cx.toFixed(4));
+      zone.style.setProperty('--ty', cy.toFixed(4));
       raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.0005 ? requestAnimationFrame(loop) : 0;
     };
     const kick = () => {
       if (!raf) raf = requestAnimationFrame(loop);
     };
-    hero.addEventListener(
+    zone.addEventListener(
       'pointermove',
       (e) => {
-        const r = hero.getBoundingClientRect();
+        const r = zone.getBoundingClientRect();
         const nx = (e.clientX - r.left) / r.width;
         const ny = (e.clientY - r.top) / r.height;
         tx = nx - 0.5;
         ty = ny - 0.5;
-        hero.style.setProperty('--mx', `${(nx * 100).toFixed(1)}%`);
-        hero.style.setProperty('--my', `${(ny * 100).toFixed(1)}%`);
+        zone.style.setProperty('--mx', `${(nx * 100).toFixed(1)}%`);
+        zone.style.setProperty('--my', `${(ny * 100).toFixed(1)}%`);
         kick();
       },
       { passive: true },
     );
-    hero.addEventListener('pointerleave', () => {
+    zone.addEventListener('pointerleave', () => {
       tx = 0;
       ty = 0;
       kick();

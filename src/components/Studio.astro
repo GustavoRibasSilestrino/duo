@@ -1,0 +1,346 @@
+---
+import Piece from './Piece.astro';
+import { products } from '../config/site';
+
+const kinds = ['camiseta', 'ecobag', 'bolsa', 'copo'] as const;
+const colors = [
+  { key: 'preta', label: 'Preta', dot: '#2b2638' },
+  { key: 'branca', label: 'Branca', dot: '#f4f2fb' },
+  { key: 'roxa', label: 'Roxa', dot: '#7a3cff' },
+];
+---
+
+<section class="studio ground-ink section" id="monte" aria-labelledby="studio-title" data-preview data-tilt>
+  <div class="container studio__grid">
+    <div class="studio__copy reveal">
+      <h2 class="h2" id="studio-title">Escreva o seu nome e veja na peça</h2>
+      <p class="lead">
+        Digite um nome e um número, escolha a peça e mande o pedido de orçamento pelo WhatsApp. A mensagem já
+        vai pronta.
+      </p>
+    </div>
+
+    <div class="stage reveal" style="--d:.1s">
+      <div class="stage__tilt">
+        <div class="stage__view" data-view data-color="preta">
+          <span class="stage__disc" aria-hidden="true"></span>
+          {kinds.map((k, i) => (
+            <div class:list={['piece-wrap', { 'is-active': i === 0 }]} data-kind={k}>
+              <Piece kind={k} live color="preta" name="Seu nome" num="10" />
+            </div>
+          ))}
+        </div>
+      </div>
+      <p class="sr-only" role="status" data-preview-live></p>
+
+      <form class="controls" novalidate aria-label="Monte a sua peça" onsubmit="return false">
+        <div class="fields">
+          <div class="field field--name">
+            <label for="pv-name">Nome</label>
+            <input
+              id="pv-name"
+              name="pv-name"
+              type="text"
+              maxlength="14"
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              placeholder="Digite um nome"
+            />
+          </div>
+          <div class="field field--num">
+            <label for="pv-num">Número</label>
+            <input
+              id="pv-num"
+              name="pv-num"
+              type="text"
+              maxlength="4"
+              autocomplete="off"
+              inputmode="text"
+              spellcheck="false"
+              placeholder="10"
+            />
+          </div>
+        </div>
+
+        <fieldset class="seg">
+          <legend>Peça</legend>
+          {products.map((p, i) => (
+            <span class="seg__opt">
+              <input type="radio" name="pv-piece" id={`pv-piece-${p.key}`} value={p.key} checked={i === 0} />
+              <label for={`pv-piece-${p.key}`}>{p.label}</label>
+            </span>
+          ))}
+        </fieldset>
+
+        <div class="colors">
+          <fieldset class="seg seg--color">
+            <legend>Cor de exemplo</legend>
+            {colors.map((c, i) => (
+              <span class="seg__opt seg__opt--dot">
+                <input type="radio" name="pv-color" id={`pv-color-${c.key}`} value={c.key} checked={i === 0} />
+                <label for={`pv-color-${c.key}`} title={c.label}>
+                  <i class="dot" style={`--dot:${c.dot}`}></i>
+                  <span class="sr-only">{c.label}</span>
+                </label>
+              </span>
+            ))}
+          </fieldset>
+          <p class="hint">Cores ilustrativas. As opções reais a gente combina com você no WhatsApp.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .studio__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .studio__copy {
+    display: grid;
+    gap: 1.1rem;
+  }
+  .studio__copy .lead {
+    color: var(--on-dark);
+    max-width: 28rem;
+  }
+
+  .stage {
+    display: grid;
+    gap: clamp(0.8rem, 2vw, 1.2rem);
+    justify-items: center;
+    min-width: 0;
+  }
+  .stage__tilt {
+    position: relative;
+    width: min(100%, 26rem);
+    transform-style: preserve-3d;
+    transform: perspective(1100px) rotateX(calc(var(--ty, 0) * -10deg)) rotateY(calc(var(--tx, 0) * 14deg));
+    will-change: transform;
+  }
+  .stage__view {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 400 / 420;
+  }
+  .stage__disc {
+    position: absolute;
+    left: 4%;
+    top: 3%;
+    width: 92%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--purple);
+    background-image: radial-gradient(circle at 50% 50%, rgba(11, 11, 15, 0.14) 1.1px, transparent 1.7px);
+    background-size: 9px 9px;
+    transition: background-color 0.5s var(--ease-out);
+    transform: translateZ(-30px);
+  }
+  .stage__view[data-color='roxa'] .stage__disc {
+    background-color: var(--ink-3);
+  }
+  .piece-wrap {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(10px) scale(0.97) translateZ(24px);
+    transition:
+      opacity 0.4s var(--ease-out),
+      transform 0.55s var(--ease-out);
+    pointer-events: none;
+  }
+  .piece-wrap.is-active {
+    opacity: 1;
+    transform: translateZ(24px);
+    animation: bob 7s ease-in-out infinite;
+  }
+  @keyframes bob {
+    50% {
+      transform: translate3d(0, -7px, 24px);
+    }
+  }
+  .piece-wrap :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ---------- painel de controles ---------- */
+  .controls {
+    display: grid;
+    gap: 0.8rem;
+    width: min(100%, 31rem);
+    padding: clamp(0.85rem, 2.4vw, 1.1rem);
+    background: var(--ink-2);
+    border: 1.5px dashed var(--line-dark);
+    border-radius: 22px;
+  }
+  .fields {
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+    gap: 0.6rem;
+  }
+  .field label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--on-dark-soft);
+  }
+  .field input {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.55rem 0.85rem;
+    background: var(--ink);
+    color: #fff;
+    border: 1.5px solid var(--line-dark);
+    border-radius: 14px;
+    font: 600 1rem/1.2 var(--f-text);
+    text-transform: uppercase;
+    transition: border-color 0.2s;
+  }
+  .field input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: none;
+    font-weight: 500;
+  }
+  .field input:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+  .field input:focus {
+    border-color: var(--purple-hi);
+  }
+
+  .seg {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .seg legend {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--on-dark-soft);
+  }
+  .seg__opt {
+    position: relative;
+    flex: 1 1 auto;
+  }
+  .seg__opt input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .seg__opt label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.75rem;
+    padding: 0.5rem 0.8rem;
+    border: 1.5px dashed var(--line-dark);
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--on-dark);
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .seg__opt input:hover + label {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .seg__opt input:checked + label {
+    background: #fff;
+    color: var(--ink);
+    border: 1.5px solid #fff;
+  }
+  .seg__opt input:focus-visible + label {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px var(--purple);
+  }
+  .colors {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .seg--color {
+    flex: none;
+    flex-wrap: nowrap;
+  }
+  .seg--color legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .seg__opt--dot {
+    flex: none;
+  }
+  .seg__opt--dot label {
+    width: 2.75rem;
+    padding: 0;
+  }
+  .seg__opt--dot input:checked + label {
+    background: transparent;
+    border: 1.5px solid #fff;
+    box-shadow:
+      0 0 0 2px var(--ink-2),
+      0 0 0 3.5px rgba(255, 255, 255, 0.7);
+  }
+  .dot {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: var(--dot);
+    box-shadow: inset 0 0 0 1.5px rgba(128, 128, 140, 0.7);
+    flex: none;
+  }
+  .hint {
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--on-dark-soft);
+  }
+
+  @media (max-width: 52rem) {
+    .studio__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .stage__tilt {
+      width: min(100%, 22rem);
+    }
+  }
+  @media (max-width: 30rem) {
+    .seg {
+      gap: 0.35rem;
+    }
+    .seg__opt label {
+      padding-inline: 0.6rem;
+      font-size: 0.88rem;
+    }
+    .controls {
+      border-radius: 18px;
+    }
+  }
+</style>

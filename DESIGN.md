@@ -43,6 +43,12 @@ typography:
     fontWeight: 800
     lineHeight: 1
     letterSpacing: "-0.045em"
+  display-narrow:
+    fontFamily: "Poppins, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "clamp(2.05rem, 0.4rem + 8.4vw, 4rem)"
+    fontWeight: 800
+    lineHeight: 1
+    letterSpacing: "-0.045em"
   headline:
     fontFamily: "Poppins, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "clamp(1.9rem, 1.2rem + 3.6vw, 3.9rem)"
@@ -117,11 +123,6 @@ typography:
     fontSize: "0.72rem"
     fontWeight: 600
     letterSpacing: "0.08em"
-  cue:
-    fontFamily: "Poppins, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "0.7rem"
-    fontWeight: 600
-    letterSpacing: "0.18em"
   note:
     fontFamily: "Mansalva, Segoe Print, Comic Sans MS, cursive"
     fontSize: "1.35rem"
@@ -129,7 +130,6 @@ typography:
     lineHeight: 1.25
 rounded:
   sm: "3px"
-  md: "4px"
   lg: "6px"
   field: "14px"
   panel-sm: "18px"
@@ -186,7 +186,7 @@ components:
   field-day:
     backgroundColor: "{colors.day}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    rounded: "{rounded.field}"
     padding: "0.65rem 0.9rem"
     height: "3.1rem"
   segment:
@@ -207,20 +207,15 @@ components:
     rounded: "{rounded.panel}"
     padding: "clamp(0.85rem, 2.4vw, 1.1rem)"
     width: "31rem"
-  status-box:
-    textColor: "{colors.on-dark}"
-    typography: "{typography.small}"
-    rounded: "{rounded.field}"
-    padding: "1rem 1.1rem"
   ticket:
     backgroundColor: "{colors.lilac}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.md}"
+    rounded: "{rounded.field}"
     padding: "1rem 1.1rem"
   order-form:
     backgroundColor: "{colors.white}"
     textColor: "{colors.ink}"
-    rounded: "{rounded.lg}"
+    rounded: "{rounded.panel}"
 ---
 
 # Design System: DUO Personalizados
@@ -233,7 +228,7 @@ O site é o verso de uma camisa preta de turma. O chão é jersey preto, com uma
 
 A densidade é generosa: seções com respiro grande, uma coluna de leitura estreita (lead com 38rem) e blocos grandes de cor. O chão percorre preto, roxo e dia (branco lilás) ao longo da rolagem, como se a camisa virasse de lado, e uma seção de palco fixo faz a camiseta girar de frente para as costas com a rolagem. O que costura o sistema é o detalhe de ateliê: tracejado (pesponto) em vez de linha sólida em bordas decorativas, costura tracejada dentro das pílulas dos botões, cantos de registro na área de estampa.
 
-O build confirma a direção. Divergências anotadas: o disco roxo atrás da peça (`stage__disc`) não estava no contrato e ficou, pois a camisa preta precisa de um chão que a destaque; a fonte única Poppins substituiu o par de condensada e texto; e os cantos viraram pílulas e raios médios no herói, enquanto o formulário de pedido ainda usa os cantos pequenos antigos (ver Shapes).
+O build confirma a direção. Divergências anotadas: os discos roxos atrás das peças (`hero__disc` e `stage__disc`) não estavam no contrato e ficaram, pois a camisa preta precisa de um chão que a destaque; a fonte única Poppins substituiu o par de condensada e texto; e os cantos viraram pílulas e raios médios em todo o site.
 
 **Key Characteristics:**
 - Jersey preto como chão padrão, roxo e dia como viradas de seção.
@@ -241,7 +236,7 @@ O build confirma a direção. Divergências anotadas: o disco roxo atrás da pe�
 - Aplique em duas camadas com pesponto tracejado para numerais e a estampa das peças.
 - Uma só família (Poppins), títulos em minúsculas com peso 800 e tracking negativo.
 - Pílulas (999px) costuradas para botões e abas; campos e painéis em raios de 14, 18 e 22px.
-- Movimento que explica: o aplique pousa em duas camadas, a camiseta gira com a rolagem, a peça acompanha o mouse.
+- Movimento que explica: o aplique pousa em duas camadas, a camiseta gira com a rolagem, as peças acompanham o mouse.
 
 ## Colors
 
@@ -250,15 +245,15 @@ Preto rico, roxo elétrico e um branco lilás. A paleta é restrita de propósit
 ### Primary
 - **Roxo elétrico** (#7a3cff): a tinta da marca. Fundo do botão principal, camada de baixo do aplique, chão roxo, disco atrás da peça, `accent-color` e rolagem. Sobre preto dá só 3,7:1, então não serve para texto pequeno sobre o preto.
 - **Roxo profundo** (#6a2bef): hover e pressão do botão primário.
-- **Roxo sobre escuro** (#8f5cff): a versão legível sobre preto. Pesponto do menu, bordas de foco em campos, cantos de registro da peça, cursor de digitação, barra de progresso da camisa que gira, segundo coração do herói e anel de foco sobre o dia.
+- **Roxo sobre escuro** (#8f5cff): a versão legível sobre preto. Pesponto do menu, bordas de foco em campos, cantos de registro da peça, cursor de digitação, barra de progresso da camisa que gira e anel de foco sobre o dia.
 
 ### Neutral
 - **Preto jersey** (#0b0b0f): chão base, fundo dos campos do herói, texto sobre dia, camada de cima do aplique em tom claro.
-- **Preto 2** (#14121c) e **Preto 3** (#1e1a2b): painel de controles do herói, hover do botão tinta, disco quando a peça é roxa.
+- **Preto 2** (#14121c) e **Preto 3** (#1e1a2b): painel de controles de Monte a sua, hover do botão tinta, disco quando a peça é roxa.
 - **Dia** (#f7f4ff): o chão claro (seção do pedido) e fundo dos campos sobre branco.
 - **Lilás** (#efe9ff): o "bilhete", prévia da mensagem do WhatsApp.
 - **Bilhete** (#cdbbff): cor exclusiva das notas manuscritas sobre o escuro.
-- **Branco** (#ffffff): a segunda tinta. Texto de títulos sobre escuro, camada de cima do aplique, segmento selecionado, painel do formulário, primeiro coração.
+- **Branco** (#ffffff): a segunda tinta. Texto de títulos sobre escuro, camada de cima do aplique, segmento selecionado e painel do formulário.
 - **Texto sobre dia** (#1a1626) e **suave sobre dia** (#4a4560): corpo e apoio sobre o chão claro.
 - **Erro** (#a4161a): só mensagens e contornos de erro do formulário, sempre acompanhados de texto "Atenção:".
 
@@ -286,7 +281,7 @@ Preto rico, roxo elétrico e um branco lilás. A paleta é restrita de propósit
 **Escala fluida.** O `html` tem tamanho-base `clamp(15px, 12.8px + 0.35vw, 20px)`, então todo `rem` escala de 15px (telefones de 320px) a 20px (telas de 1920px). Os tamanhos abaixo estão em rem e herdam essa escala; os títulos somam um `clamp` com `vw`.
 
 ### Hierarchy
-- **Display** (800, `clamp(2.05rem, 0.4rem + 6.3vw, 4.7rem)`, 1, -0.045em): as palavras do slogan do herói ao lado dos numerais, em minúsculas, brancas; abaixo de 62rem usa `clamp(2.05rem, 0.4rem + 8.4vw, 4rem)`. Cada linha sobe em máscara.
+- **Display** (800, `clamp(2.05rem, 0.4rem + 6.3vw, 4.7rem)`, 1, -0.045em): as palavras do slogan do herói ao lado dos numerais, em minúsculas, brancas; abaixo de 62rem vira **Display narrow**, `clamp(2.05rem, 0.4rem + 8.4vw, 4rem)`. Cada linha sobe em máscara.
 - **Headline** (800, `clamp(1.9rem, 1.2rem + 3.6vw, 3.9rem)`, 1.04, -0.025em): `.h2` de seção, branco no escuro e preto no dia, `text-wrap: balance`.
 - **Title** (800, `clamp(1.3rem, 1rem + 1.4vw, 2rem)`, 1.1): títulos de passos.
 - **Subtitle** (800, `clamp(1.15rem, 0.9rem + 1.2vw, 1.8rem)`, 1.1): títulos de itens do vestiário, do casal e do rodapé (este em 700).
@@ -295,11 +290,10 @@ Preto rico, roxo elétrico e um branco lilás. A paleta é restrita de propósit
 - **Menu** (600, 0.92rem, -0.005em): links do cabeçalho.
 - **Button** (600, 1rem, 1.1) e **Field** (600, 1rem, 1.2, maiúsculas na entrada).
 - **UI** (600, 0.95rem): botão pequeno. **UI Seg** (600, 0.92rem): abas de peça; **UI Narrow** (600, 0.88rem) abaixo de 30rem.
-- **Small** (400, 0.97rem) e 0.95rem: caixa de status do WhatsApp e textos de apoio do pedido; 0.9rem em avisos do pedido.
+- **Small** (400, 0.97rem) e 0.95rem: textos de apoio e aviso de status do pedido; 0.9rem em avisos do pedido.
 - **Caption** (400, 0.8rem, 1.45): dica sob as cores de exemplo.
 - **Label** (600, 0.72rem, +0.08em, maiúsculas): rótulos de campos e legendas dos seletores. Só em formulário.
-- **Cue** (600, 0.7rem, +0.18em, maiúsculas): o convite "role" do herói.
-- **Nota** (400, 1.35rem, 1.25): Mansalva em #cdbbff, assinatura do casal; no herói `clamp(1.25rem, 1rem + 0.6vw, 1.5rem)`.
+- **Nota** (400, 1.35rem, 1.25): Mansalva em #cdbbff, assinatura do casal.
 
 ### Named Rules
 **A Regra do Bilhete.** Mansalva aparece só quando o casal fala, em tamanho de nota. Nunca em título, botão ou corpo.
@@ -310,13 +304,13 @@ Preto rico, roxo elétrico e um branco lilás. A paleta é restrita de propósit
 
 ## Layout
 
-Contêiner centrado de 82rem com gutter fluido (`clamp(1rem, 4.5vw, 2.75rem)`). O hero é uma grade de 6 colunas (slogan, frase e botões) por 5 (a peça e o painel de controles) com lacuna fluida de 1.5 a 4.5rem, e ocupa a altura da janela menos o cabeçalho. A seção da camiseta giratória usa 5 por 6, com um trilho de 400svh e um palco fixo (`position: sticky`, abaixo do cabeçalho de 4.5rem). Seções usam respiro vertical de 4.5 a 8.5rem. O pedido tem a coluna de texto fixa. O ritmo interno usa passos de 0.75, 1.2 e 1.75rem; alvos de toque têm no mínimo 2.75rem.
+Contêiner centrado de 82rem com gutter fluido (`clamp(1rem, 4.5vw, 2.75rem)`). O hero é uma grade de 6 colunas (slogan, frase e botões) por 5 (as peças sobre o disco roxo) com lacuna fluida de 1.5 a 4.5rem, e ocupa a altura da janela menos o cabeçalho. Monte a sua usa 5 por 6 (texto, depois prévia e controles). A seção da camiseta giratória usa 5 por 6, com um trilho de 400svh e um palco fixo (`position: sticky`, abaixo do cabeçalho de 4.5rem). Seções usam respiro vertical de 4.5 a 8.5rem. O pedido tem a coluna de texto fixa. O ritmo interno usa passos de 0.75, 1.2 e 1.75rem; alvos de toque têm no mínimo 2.75rem.
 
-Responsivo: abaixo de 62rem o hero vira uma coluna na ordem slogan, peça com controles, frase, botões e assinatura, e o convite "role" some. Abaixo de 52rem a camiseta giratória empilha (peça primeiro), esconde o botão e uma das peças flutuantes, e as demais grades colapsam; um botão de WhatsApp fixo aparece no rodapé da tela. Abaixo de 30rem as abas encurtam o preenchimento e o painel passa a 18px de raio. Sem JavaScript ou com movimento reduzido, a camiseta mostra frente e costas lado a lado, sem trilho.
+Responsivo: abaixo de 62rem o hero vira uma coluna na ordem slogan, peças, frase e botões. Abaixo de 52rem a camiseta giratória empilha (peça primeiro), esconde o botão e uma das peças flutuantes, e as demais grades colapsam; um botão de WhatsApp fixo aparece no rodapé da tela quando o botão do herói sai de vista (e some no pedido). Abaixo de 30rem as abas encurtam o preenchimento e o painel passa a 18px de raio. Sem JavaScript ou com movimento reduzido, a camiseta mostra frente e costas lado a lado, sem trilho.
 
 ## Elevation & Depth
 
-Plano por padrão. A profundidade vem do chão (preto, roxo, dia), do aplique em duas camadas (a camada de baixo é deslocada 2,5px por 3,5px, um deslocamento de tecido, não uma sombra) e da perspectiva: a peça do herói e os corações flutuam em camadas de Z (disco a -30px, peça a 24px, corações a 70 e 90px) e inclinam até 12 e 16 graus seguindo o mouse; a camiseta gira em `perspective: 1200px`. Sombras existem como resposta ou como queda ambiente.
+Plano por padrão. A profundidade vem do chão (preto, roxo, dia), do aplique em duas camadas (a camada de baixo é deslocada 2,5px por 3,5px, um deslocamento de tecido, não uma sombra) e da perspectiva: as peças do herói se deslocam em profundidades diferentes conforme o mouse (e o disco no sentido contrário), e a prévia de Monte a sua inclina até 10 e 14 graus em camadas de Z (disco a -30px, peça a 24px); a camiseta gira em `perspective: 1200px`. Sombras existem como resposta ou como queda ambiente.
 
 ### Shadow Vocabulary
 - **Hover do botão** (`box-shadow: 0 14px 26px -10px rgba(122, 60, 255, 0.65)`): botão primário; no tinta usa o preto a 60%.
@@ -328,13 +322,11 @@ Plano por padrão. A profundidade vem do chão (preto, roxo, dia), do aplique em
 ### Named Rules
 **A Regra do Plano.** Superfícies são planas em repouso. Sombra só por estado (hover, foco, seleção) ou como queda ambiente do retrato.
 
-**A Regra da Profundidade em Z.** Profundidade se faz com translação e inclinação em Z (peça, corações, camiseta), não com sombras empilhadas.
+**A Regra da Profundidade em Z.** Profundidade se faz com translação e inclinação em Z (peças, camiseta), não com sombras empilhadas.
 
 ## Shapes
 
-Há duas famílias de canto, e o build as usa em lugares diferentes. **Pílulas (999px)**: botões (primário, tinta, fantasma, pequeno), abas de peça e de cor, o ícone do mouse do convite "role", e a costura tracejada interna dos botões (recuada 4px, também 999px). **Raios médios**: 14px nos campos de nome e número e na caixa de status do WhatsApp, 22px no painel de controles do herói, 18px nesse painel abaixo de 30rem. Cantos pequenos: 3px (selos, moldura interna do retrato e foco), 4px (campos do pedido, bilhete, resumo de erros, botão do menu) e 6px (painel do formulário de pedido, moldura do retrato, trilho da rolagem). Círculos (50%): o disco atrás da peça, o ponto e o anel do cursor, a bolinha de cor.
-
-Divergência registrada: o formulário de pedido (Order) ainda está nos cantos de 4 e 6px, anteriores à mudança para pílulas e raios médios. Não foi alterado nesta rodada; se for alinhado, seus campos devem usar 14px e o painel 22px.
+Há duas famílias de canto. **Pílulas (999px)**: botões (primário, tinta, fantasma, pequeno), abas de peça e de cor, e a costura tracejada interna dos botões (recuada 4px, também 999px). **Raios médios**: 14px nos campos (nome e número, pedido), no resumo de erros e no bilhete; 22px nos painéis (controles de Monte a sua e formulário de pedido), 18px no painel de controles abaixo de 30rem. Cantos pequenos só em detalhes: 3px (foco e selos do casal) e 6px (moldura do retrato e trilho da rolagem). Círculos (50%): os discos atrás das peças, o ponto e o anel do cursor, a bolinha de cor.
 
 Bordas decorativas são tracejadas (pesponto, 1.5px; 2px em divisórias) e bordas funcionais de campo são contínuas. Os cantos de registro (traços em L em #8f5cff) enquadram a área de estampa da peça.
 
@@ -352,19 +344,22 @@ Bordas decorativas são tracejadas (pesponto, 1.5px; 2px em divisórias) e borda
 O lettering assinatura. Três camadas SVG do mesmo texto em Poppins 800: debaixo (preenchimento e traço de 7 unidades, deslocado), em cima (preenchimento) e pesponto (traço tracejado de 1.3, 3.2 e 3). Tons: dark (roxo por baixo, branco em cima, pesponto preto), purple (preto por baixo, pesponto roxo), light (roxo por baixo, preto em cima, pesponto branco), ink (branco por baixo, preto em cima) e ghost (só o contorno alinhavado). Os numerais do slogan usam o tom dark e altura de 1.12em. Na entrada a camada de baixo pousa primeiro, deslizando de (-7px, -9px), e a de cima e o pesponto aparecem 0.18s depois.
 
 ### Primeira tela (Hero)
-Slogan com numerais em aplique e linhas que sobem em máscara (`line-up`, 0.95s, linhas escalonadas em 0.12s); disco roxo com a peça ao vivo; dois corações flutuantes (branco e #8f5cff) em profundidade; painel de controles compacto; luz de furinhos que segue o mouse; inclinação 3D da peça e dos corações pelo ponteiro (suavizada, 0.085 por quadro); parallax de rolagem (a peça sobe até 46px e gira até -4 graus); convite "role" com ponto descendo no ícone do mouse. A peça respira com um movimento de 7s e 7px.
+Limpa de propósito: o slogan com numerais em aplique e linhas que sobem em máscara (`line-up`, 0.95s, escalonadas em 0.12s), uma frase de apoio e dois botões (o primário "Pedir no WhatsApp" e o fantasma "Montar a minha"). À direita, as quatro peças que a DUO faz (camiseta com o logo, ecobag, bolsa e copo) soltas sobre um disco roxo com trama de furinhos. Cada peça flutua no seu ritmo (6.5s, 0.7rem) e se desloca em uma profundidade própria (`--z`, de 60 a 130) conforme o mouse, com suavização de 0.085 por quadro; o disco vai no sentido contrário. Ao fundo, a luz de furinhos segue o mouse; na rolagem, as peças sobem até 40px. Não há painel de controles, corações, demonstração digitando nem convite "role": tudo isso saiu para deixar a primeira tela leve.
 
 ### Camiseta que gira (ShirtTurn)
 Seção `ground-ink` com trilho de 400svh e palco fixo. A rolagem gira a camiseta até 720 graus (frente com o logo, costas com nome e número em aplique ao vivo); a cor muda de preta para branca e para roxa enquanto ela está de frente, o nome troca (YASMIN 1, GABRIEL 2), e três legendas se revezam. Ecobag, bolsa e copo flutuam em deslocamentos e inclinações próprios (`--d`, `--tilt`) ligados ao progresso. Uma barra tracejada de progresso (#8f5cff) corre no rodapé do palco. O movimento persegue a rolagem com suavização (0.14 por quadro).
+
+### Monte a sua (Studio)
+Seção `ground-ink` (`#monte`) onde mora a prévia ao vivo: a peça sobre o disco roxo (Preto 3 quando a peça é roxa), com inclinação 3D pelo mouse (até 10 e 14 graus) e respiro de 7s e 7px, e ao lado o painel de controles com nome, número, peça e cor de exemplo. Uma demonstração digita sozinha uma vez (Yasmin 1, Gabriel 2, Você 10) quando a seção chega à vista.
 
 ### Seletores de peça e cor
 Pílulas com borda tracejada de 1.5px, altura mínima de 2.75rem, rótulo Poppins 600; selecionado vira branco com texto preto e borda contínua. A bolinha de cor (1.25rem) tem anel cinza interno; selecionada, ganha anel duplo.
 
 ### Campos
-No herói, sobre o escuro: fundo Preto jersey dentro do painel Preto 2, borda de 1.5px a 18% de branco, raio de 14px, altura mínima de 3rem, entrada em maiúsculas, foco com borda #8f5cff. No pedido, sobre o dia: fundo Dia, borda preta a 40%, raio de 4px, foco com borda roxa e fundo branco. Erro: borda de 2px em #a4161a, resumo de erros com título e texto "Atenção:".
+Em Monte a sua, sobre o escuro: fundo Preto jersey dentro do painel Preto 2, borda de 1.5px a 18% de branco, raio de 14px, altura mínima de 3rem, entrada em maiúsculas, foco com borda #8f5cff. No pedido, sobre o dia: fundo Dia, borda preta a 40%, raio de 14px, foco com borda roxa e fundo branco. Erro: borda de 2px em #a4161a, resumo de erros com título e texto "Atenção:".
 
 ### Painel de controles
-Preto 2, borda tracejada de 1.5px a 18% de branco, raio de 22px, até 31rem, preenchimento fluido de 0.85 a 1.1rem; reúne nome e número, peça, cor e dica.
+Em Monte a sua: Preto 2, borda tracejada de 1.5px a 18% de branco, raio de 22px, até 31rem, preenchimento fluido de 0.85 a 1.1rem; reúne nome e número, peça, cor e dica.
 
 ### Navigation
 Cabeçalho fixo preto de 4.5rem, marca "duo" com o u caindo, links em Poppins 600 com pesponto roxo que se desenha por baixo no hover, e o botão primário "Pedir orçamento". No celular, gaveta com itens separados por tracejado.
@@ -379,7 +374,7 @@ Só com mouse fino e sem reduzir movimento: ponto de 8px e anel de 38px (borda 1
 Tela roxa com a trama de furinhos, o logo se monta (d, o, e o u cai por último) e um círculo de máscara cresce do canto superior esquerdo revelando a página. Aparece uma vez por sessão, nunca com reduzir movimento. Revelações ao rolar: 18px de subida e fade em 0.7s com `--ease-out` (cubic-bezier(0.16, 1, 0.3, 1)). Com `prefers-reduced-motion` ou a classe `rm`, tudo fica parado e visível; a classe `review` solta a altura mínima do herói para capturas de página inteira.
 
 ### Bilhete
-Painel Lilás com rótulo em maiúsculas que mostra a mensagem do WhatsApp que será aberta.
+Painel Lilás com rótulo em maiúsculas (raio de 14px) que mostra a mensagem do WhatsApp que será aberta.
 
 ## Do's and Don'ts
 
@@ -396,7 +391,8 @@ Painel Lilás com rótulo em maiúsculas que mostra a mensagem do WhatsApp que s
 ### Don't:
 - **Don't** introduzir uma terceira cor de marca além de roxo e branco sobre o preto.
 - **Don't** introduzir uma segunda família tipográfica; Mansalva só nas notas do casal.
-- **Don't** abrir seções com a fileira de cartões iguais nem com o mockup de camiseta ao lado de um título; a peça é viva e ligada aos controles.
+- **Don't** abrir seções com a fileira de cartões iguais nem com o mockup de camiseta ao lado de um título; a peça é viva e ligada aos controles de Monte a sua.
 - **Don't** usar sombra em repouso nem cantos retos e pequenos em painéis novos.
+- **Don't** voltar a encher a primeira tela: slogan, uma frase, dois botões e as peças. Controles, demonstrações e convites ficam nas seções de baixo.
 - **Don't** inventar preço, prazo, técnica, foto ou depoimento; o conteúdo ainda não informado fica em espaço reservado rotulado.
 - **Don't** esconder conteúdo atrás de JavaScript: revelações e o giro da camiseta só atuam com a classe `js` e sem `rm`, e a leitura funciona sem eles.

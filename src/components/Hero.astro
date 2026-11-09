@@ -2,18 +2,16 @@
 import Twill from './Twill.astro';
 import Piece from './Piece.astro';
 import Icon from './Icon.astro';
-import { products } from '../config/site';
 
-const kinds = ['camiseta', 'ecobag', 'bolsa', 'copo'] as const;
-const colors = [
-  { key: 'preta', label: 'Preta', dot: '#2b2638' },
-  { key: 'branca', label: 'Branca', dot: '#f4f2fb' },
-  { key: 'roxa', label: 'Roxa', dot: '#7a3cff' },
-];
-const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 60 20 0 62Z';
+// o logo "duo" em caminhos, centrado na origem; as cores vêm do tom da peça (lg-d / lg-u)
+const logo = {
+  d: 'M122 40H150V203H122V196.73A53 53 0 1 1 122 103.27ZM72 150A25 28 0 1 1 122 150A25 28 0 1 1 72 150Z',
+  u: 'M177 112V161A54 54 0 0 0 285 161V112H257V161A26 29 0 0 1 205 161V112Z',
+  o: 'M304 150A53 53 0 1 1 410 150A53 53 0 1 1 304 150ZM332 150A25 28 0 1 1 382 150A25 28 0 1 1 332 150Z',
+};
 ---
 
-<section class="hero ground-ink" id="topo" aria-labelledby="hero-title" data-preview data-hero>
+<section class="hero ground-ink" id="topo" aria-labelledby="hero-title" data-hero data-tilt>
   <div class="hero__mesh" aria-hidden="true"></div>
 
   <div class="container hero__grid">
@@ -43,8 +41,7 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
       </h1>
 
       <p class="lead hero__lead-text">
-        A gente estampa camisetas, ecobags, bolsas e copos do seu jeito. Escreva um nome e um número,
-        veja na peça e peça o orçamento pelo WhatsApp.
+        Camisetas, ecobags, bolsas e copos personalizados, feitos por Yasmin e Gabriel.
       </p>
 
       <div class="hero__cta">
@@ -52,107 +49,53 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
           <Icon name="chat" />
           <span>Pedir no WhatsApp</span>
         </a>
-        <a class="btn btn--ghost" href="#pecas">
-          <span>Ver as peças</span>
-          <Icon name="arrow-down" />
+        <a class="btn btn--ghost" href="#monte">
+          <span>Montar a minha</span>
         </a>
       </div>
-      <p class="note hero__sign">Feito pela Yasmin e pelo Gabriel.</p>
-
-      <p class="sr-only" role="status" data-wa-announce></p>
-      <div class="wa-status" data-wa-status hidden>
-        <p data-wa-status-text></p>
-        <button class="btn btn--ghost btn--small" type="button" data-copy-msg>
-          <Icon name="copy" />
-          <span>Copiar mensagem</span>
-        </button>
-      </div>
     </div>
 
-    <div class="stage">
-      <div class="stage__scroll">
-        <div class="stage__tilt">
-          <svg class="heart heart--a" viewBox="-80 -70 160 140" aria-hidden="true" focusable="false">
-            <path d={heart} />
-          </svg>
-          <svg class="heart heart--b" viewBox="-80 -70 160 140" aria-hidden="true" focusable="false">
-            <path d={heart} />
-          </svg>
-          <div class="stage__view" data-view data-color="preta">
-            <span class="stage__disc" aria-hidden="true"></span>
-            {kinds.map((k, i) => (
-              <div class:list={['piece-wrap', { 'is-active': i === 0 }]} data-kind={k}>
-                <Piece kind={k} live color="preta" name="Seu nome" num="10" />
-              </div>
-            ))}
-          </div>
-        </div>
+    <div class="hero__art" aria-hidden="true">
+      <span class="hero__disc"></span>
+
+      <div class="hero__piece hero__piece--shirt" style="--z:60;--r:0deg;--i:0">
+        <Piece kind="camiseta" view="front" color="preta">
+          <g transform="scale(.27) translate(-226 -127.5)">
+            <path class="lg-d" fill-rule="evenodd" d={logo.d} />
+            <path class="lg-u" d={logo.u} />
+            <path class="lg-d" fill-rule="evenodd" d={logo.o} />
+          </g>
+        </Piece>
       </div>
-      <p class="sr-only" role="status" data-preview-live></p>
-
-      <form class="controls" novalidate aria-label="Monte a sua peça" onsubmit="return false">
-        <div class="fields">
-          <div class="field field--name">
-            <label for="pv-name">Nome</label>
-            <input
-              id="pv-name"
-              name="pv-name"
-              type="text"
-              maxlength="14"
-              autocomplete="off"
-              autocapitalize="characters"
-              spellcheck="false"
-              placeholder="Digite um nome"
-            />
-          </div>
-          <div class="field field--num">
-            <label for="pv-num">Número</label>
-            <input
-              id="pv-num"
-              name="pv-num"
-              type="text"
-              maxlength="4"
-              autocomplete="off"
-              inputmode="text"
-              spellcheck="false"
-              placeholder="10"
-            />
-          </div>
-        </div>
-
-        <fieldset class="seg">
-          <legend>Peça</legend>
-          {products.map((p, i) => (
-            <span class="seg__opt">
-              <input type="radio" name="pv-piece" id={`pv-piece-${p.key}`} value={p.key} checked={i === 0} />
-              <label for={`pv-piece-${p.key}`}>{p.label}</label>
-            </span>
-          ))}
-        </fieldset>
-
-        <div class="colors">
-          <fieldset class="seg seg--color">
-            <legend>Cor de exemplo</legend>
-            {colors.map((c, i) => (
-              <span class="seg__opt seg__opt--dot">
-                <input type="radio" name="pv-color" id={`pv-color-${c.key}`} value={c.key} checked={i === 0} />
-                <label for={`pv-color-${c.key}`} title={c.label}>
-                  <i class="dot" style={`--dot:${c.dot}`}></i>
-                  <span class="sr-only">{c.label}</span>
-                </label>
-              </span>
-            ))}
-          </fieldset>
-          <p class="hint">Cores ilustrativas. As opções reais a gente combina com você no WhatsApp.</p>
-        </div>
-      </form>
+      <div class="hero__piece hero__piece--tote" style="--z:110;--r:-9deg;--i:1">
+        <Piece kind="ecobag" color="branca">
+          <g transform="scale(.3) translate(-226 -127.5)">
+            <path class="lg-d" fill-rule="evenodd" d={logo.d} />
+            <path class="lg-u" d={logo.u} />
+            <path class="lg-d" fill-rule="evenodd" d={logo.o} />
+          </g>
+        </Piece>
+      </div>
+      <div class="hero__piece hero__piece--bag" style="--z:80;--r:8deg;--i:2">
+        <Piece kind="bolsa" color="preta">
+          <g transform="scale(.3) translate(-226 -127.5)">
+            <path class="lg-d" fill-rule="evenodd" d={logo.d} />
+            <path class="lg-u" d={logo.u} />
+            <path class="lg-d" fill-rule="evenodd" d={logo.o} />
+          </g>
+        </Piece>
+      </div>
+      <div class="hero__piece hero__piece--cup" style="--z:130;--r:-12deg;--i:3">
+        <Piece kind="copo" color="branca">
+          <g transform="scale(.26) translate(-226 -127.5)">
+            <path class="lg-d" fill-rule="evenodd" d={logo.d} />
+            <path class="lg-u" d={logo.u} />
+            <path class="lg-d" fill-rule="evenodd" d={logo.o} />
+          </g>
+        </Piece>
+      </div>
     </div>
   </div>
-
-  <a class="hero__cue" href="#camisa" aria-label="Rolar para ver a camisa girar">
-    <span class="hero__cue-dot"></span>
-    <span class="hero__cue-text">role</span>
-  </a>
 </section>
 
 <style>
@@ -163,7 +106,7 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
     min-height: calc(100svh - var(--header-h));
     display: grid;
     align-items: center;
-    padding-block: clamp(1rem, 3vh, 2.5rem) clamp(3.5rem, 8vh, 5.5rem);
+    padding-block: clamp(1.5rem, 5vh, 3.5rem);
     overflow: clip;
   }
 
@@ -175,8 +118,8 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
     pointer-events: none;
     background-image: radial-gradient(circle at 50% 50%, rgba(167, 139, 255, 0.95) 1.3px, transparent 2px);
     background-size: 9px 9px;
-    -webkit-mask-image: radial-gradient(circle 17rem at var(--mx, 70%) var(--my, 35%), #000 0%, transparent 100%);
-    mask-image: radial-gradient(circle 17rem at var(--mx, 70%) var(--my, 35%), #000 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle 17rem at var(--mx, 72%) var(--my, 40%), #000 0%, transparent 100%);
+    mask-image: radial-gradient(circle 17rem at var(--mx, 72%) var(--my, 40%), #000 0%, transparent 100%);
     opacity: 0.55;
   }
 
@@ -188,7 +131,7 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
   }
   .hero__copy {
     display: grid;
-    gap: clamp(1rem, 2.4vh, 1.6rem);
+    gap: clamp(1.1rem, 3vh, 1.8rem);
     justify-items: start;
     min-width: 0;
   }
@@ -236,19 +179,15 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
   }
 
   .hero__lead-text {
-    max-width: 31rem;
+    max-width: 27rem;
     color: var(--on-dark);
   }
   :global(:root:not(.intro-wait)) .hero__lead-text,
-  :global(:root:not(.intro-wait)) .hero__cta,
-  :global(:root:not(.intro-wait)) .hero__sign {
+  :global(:root:not(.intro-wait)) .hero__cta {
     animation: rise 0.9s var(--ease-out) 0.55s backwards;
   }
   :global(:root:not(.intro-wait)) .hero__cta {
-    animation-delay: 0.68s;
-  }
-  :global(:root:not(.intro-wait)) .hero__sign {
-    animation-delay: 0.8s;
+    animation-delay: 0.7s;
   }
   @keyframes rise {
     from {
@@ -256,83 +195,32 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
       transform: translateY(18px);
     }
   }
-
   .hero__cta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
   }
-  .hero__sign {
-    font-size: clamp(1.25rem, 1rem + 0.6vw, 1.5rem);
-  }
 
-  /* a região viva (sr-only) fica sempre na página; a caixa visível, com o botão, só existe quando aparece */
-  .wa-status {
-    display: grid;
-    gap: 0.75rem;
-    padding: 1rem 1.1rem;
-    border: 1.5px dashed var(--line-dark);
-    border-radius: 14px;
-    font-size: 0.95rem;
-    max-width: 34rem;
-  }
-  .wa-status[hidden] {
-    display: none;
-  }
-  .btn--small {
-    min-height: 2.75rem;
-    padding: 0.5rem 1rem;
-    font-size: 0.95rem;
-    justify-self: start;
-  }
-
-  /* ---------- palco ---------- */
-  .stage {
+  /* ---------- as peças que a DUO faz, soltas sobre o disco ---------- */
+  .hero__art {
     position: relative;
-    display: grid;
-    gap: clamp(0.6rem, 1.4vh, 1rem);
-    justify-items: center;
-    min-width: 0;
-  }
-  .stage__scroll {
-    width: 100%;
-    display: grid;
-    justify-items: center;
-    transform: translate3d(0, calc(var(--hs, 0) * 46px), 0) rotate(calc(var(--hs, 0) * -4deg));
-    will-change: transform;
-  }
-  .stage__tilt {
-    position: relative;
-    width: min(100%, 27.5rem, 40svh);
-    transform-style: preserve-3d;
-    transform: perspective(1100px) rotateX(calc(var(--ty, 0) * -12deg)) rotateY(calc(var(--tx, 0) * 16deg));
-    will-change: transform;
-  }
-  .stage__view {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 400 / 420;
-    transform: translateZ(0);
-  }
-  /* o disco da marca por trás da peça: a camisa preta precisa de um chão que a destaque */
-  .stage__disc {
-    position: absolute;
-    left: 4%;
-    top: 3%;
-    width: 92%;
+    width: min(100%, 34rem, 78svh);
     aspect-ratio: 1;
+    margin-inline: auto;
+    transform: translate3d(0, calc(var(--hs, 0) * 40px), 0);
+    will-change: transform;
+  }
+  .hero__disc {
+    position: absolute;
+    inset: 8%;
     border-radius: 50%;
     background-color: var(--purple);
     background-image: radial-gradient(circle at 50% 50%, rgba(11, 11, 15, 0.14) 1.1px, transparent 1.7px);
     background-size: 9px 9px;
-    transition: background-color 0.5s var(--ease-out);
-    transform: translateZ(-30px);
+    transform: translate3d(calc(var(--tx, 0) * -16px), calc(var(--ty, 0) * -11px), 0);
   }
-  :global(:root:not(.intro-wait)) .stage__disc {
+  :global(:root:not(.intro-wait)) .hero__disc {
     animation: disc-in 1.1s var(--ease-out) 0.1s backwards;
-  }
-  .stage__view[data-color='roxa'] .stage__disc {
-    background-color: var(--ink-3);
   }
   @keyframes disc-in {
     from {
@@ -343,274 +231,56 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
       clip-path: circle(75% at 50% 50%);
     }
   }
-  .piece-wrap {
+  .hero__piece {
     position: absolute;
-    inset: 0;
-    opacity: 0;
-    transform: translateY(10px) scale(0.97) translateZ(24px);
-    transition:
-      opacity 0.4s var(--ease-out),
-      transform 0.55s var(--ease-out);
-    pointer-events: none;
+    transform: translate3d(calc(var(--tx, 0) * var(--z) * -1px), calc(var(--ty, 0) * var(--z) * -0.6px), 0) rotate(var(--r));
+    will-change: transform;
+    /* flutua sem brigar com o transform do mouse: usa a propriedade translate */
+    animation: float 6.5s ease-in-out calc(var(--i) * -1.4s) infinite;
   }
-  .piece-wrap.is-active {
-    opacity: 1;
-    transform: translateZ(24px);
-    animation: bob 7s ease-in-out infinite;
+  .hero__piece :global(svg) {
+    width: 100%;
+    height: auto;
   }
-  @keyframes bob {
+  @keyframes float {
     50% {
-      transform: translate3d(0, -7px, 24px);
+      translate: 0 -0.7rem;
     }
   }
-  .piece-wrap :global(svg) {
-    width: 100%;
-    height: 100%;
+  :global(:root:not(.intro-wait)) .hero__piece {
+    animation:
+      float 6.5s ease-in-out calc(var(--i) * -1.4s) infinite,
+      piece-in 1s var(--ease-out) calc(0.35s + var(--i) * 0.14s) backwards;
   }
-
-  /* dois corações flutuando, com profundidade própria */
-  .heart {
-    position: absolute;
-    width: 22%;
-    height: auto;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .heart path {
-    stroke: none;
-  }
-  .heart--a {
-    left: -4%;
-    top: 9%;
-    transform: translate3d(calc(var(--tx, 0) * -44px), calc(var(--ty, 0) * -30px), 70px) rotate(-12deg);
-  }
-  .heart--a path {
-    fill: #fff;
-  }
-  .heart--b {
-    right: -3%;
-    bottom: 22%;
-    width: 17%;
-    transform: translate3d(calc(var(--tx, 0) * 54px), calc(var(--ty, 0) * 36px), 90px) rotate(11deg);
-  }
-  .heart--b path {
-    fill: var(--purple-hi);
-  }
-  :global(:root:not(.intro-wait)) .heart {
-    animation: heart-in 0.9s var(--ease-out) 0.9s backwards;
-  }
-  @keyframes heart-in {
+  @keyframes piece-in {
     from {
       opacity: 0;
-      scale: 0.4;
+      scale: 0.82;
     }
   }
-
-  /* ---------- painel de controles ---------- */
-  .controls {
-    display: grid;
-    gap: 0.8rem;
-    width: min(100%, 31rem);
-    padding: clamp(0.85rem, 2.4vw, 1.1rem);
-    background: var(--ink-2);
-    border: 1.5px dashed var(--line-dark);
-    border-radius: 22px;
+  .hero__piece--shirt {
+    left: 17%;
+    top: 14%;
+    width: 66%;
+    z-index: 2;
   }
-  :global(:root:not(.intro-wait)) .controls {
-    animation: rise 0.9s var(--ease-out) 0.75s backwards;
+  .hero__piece--tote {
+    left: 0;
+    top: 3%;
+    width: 30%;
+    z-index: 3;
   }
-  .fields {
-    display: grid;
-    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
-    gap: 0.6rem;
+  .hero__piece--bag {
+    right: 0;
+    top: 46%;
+    width: 33%;
+    z-index: 3;
   }
-  .field label {
-    display: block;
-    margin-bottom: 0.3rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--on-dark-soft);
-  }
-  .field input {
-    width: 100%;
-    min-height: 3rem;
-    padding: 0.55rem 0.85rem;
-    background: var(--ink);
-    color: #fff;
-    border: 1.5px solid var(--line-dark);
-    border-radius: 14px;
-    font: 600 1rem/1.2 var(--f-text);
-    text-transform: uppercase;
-    transition: border-color 0.2s;
-  }
-  .field input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-    text-transform: none;
-    font-weight: 500;
-  }
-  .field input:hover {
-    border-color: rgba(255, 255, 255, 0.45);
-  }
-  .field input:focus {
-    border-color: var(--purple-hi);
-  }
-
-  .seg {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    min-width: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-  .seg legend {
-    float: left;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 0.4rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--on-dark-soft);
-  }
-  .seg__opt {
-    position: relative;
-    flex: 1 1 auto;
-  }
-  .seg__opt input {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    margin: 0;
-    cursor: pointer;
-  }
-  .seg__opt label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    min-height: 2.75rem;
-    padding: 0.5rem 0.8rem;
-    border: 1.5px dashed var(--line-dark);
-    border-radius: 999px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: var(--on-dark);
-    cursor: pointer;
-    transition:
-      background-color 0.2s,
-      color 0.2s,
-      border-color 0.2s;
-  }
-  .seg__opt input:hover + label {
-    border-color: rgba(255, 255, 255, 0.5);
-  }
-  .seg__opt input:checked + label {
-    background: #fff;
-    color: var(--ink);
-    border: 1.5px solid #fff;
-  }
-  .seg__opt input:focus-visible + label {
-    outline: 3px solid #fff;
-    outline-offset: 3px;
-    box-shadow: 0 0 0 6px var(--purple);
-  }
-  .colors {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-  }
-  .seg--color {
-    flex: none;
-    flex-wrap: nowrap;
-  }
-  .seg--color legend {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-  }
-  .seg__opt--dot {
-    flex: none;
-  }
-  .seg__opt--dot label {
-    width: 2.75rem;
-    padding: 0;
-  }
-  .seg__opt--dot input:checked + label {
-    background: transparent;
-    border: 1.5px solid #fff;
-    box-shadow: 0 0 0 2px var(--ink-2), 0 0 0 3.5px rgba(255, 255, 255, 0.7);
-  }
-  .dot {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    background: var(--dot);
-    box-shadow: inset 0 0 0 1.5px rgba(128, 128, 140, 0.7);
-    flex: none;
-  }
-  .hint {
-    font-size: 0.8rem;
-    line-height: 1.45;
-    color: var(--on-dark-soft);
-  }
-
-  /* convite para rolar */
-  .hero__cue {
-    position: absolute;
-    left: 50%;
-    bottom: clamp(0.6rem, 2vh, 1.2rem);
-    translate: -50% 0;
-    display: grid;
-    justify-items: center;
-    gap: 0.35rem;
-    min-width: 2.75rem;
-    min-height: 2.75rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--on-dark-soft);
-  }
-  .hero__cue-dot {
-    width: 1.35rem;
-    height: 2.1rem;
-    border: 1.5px solid currentColor;
-    border-radius: 999px;
-    position: relative;
-  }
-  .hero__cue-dot::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 0.4rem;
-    width: 0.25rem;
-    height: 0.45rem;
-    margin-left: -0.125rem;
-    border-radius: 999px;
-    background: currentColor;
-    animation: cue 1.8s var(--ease-quart) infinite;
-  }
-  @keyframes cue {
-    0% {
-      opacity: 0;
-      transform: translateY(0);
-    }
-    30% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(0.8rem);
-    }
+  .hero__piece--cup {
+    left: 5%;
+    bottom: 3%;
+    width: 21%;
+    z-index: 3;
   }
 
   /* ---------- telas menores ---------- */
@@ -621,20 +291,18 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
     }
     .hero__grid {
       grid-template-columns: minmax(0, 1fr);
-      row-gap: clamp(1.5rem, 5vw, 2.5rem);
+      row-gap: clamp(1.25rem, 4vw, 2.25rem);
     }
-    .stage__tilt {
-      width: min(100%, 25rem, 52svh);
-    }
-    /* no celular: slogan, depois a camisa e os controles, depois o texto e os botões */
+    /* no celular: slogan, depois as peças, depois o texto e os botões */
     .hero__copy {
       display: contents;
     }
     .hero__title {
       order: 1;
     }
-    .stage {
+    .hero__art {
       order: 2;
+      width: min(100%, 24rem, 52svh);
     }
     .hero__lead-text {
       order: 3;
@@ -642,47 +310,13 @@ const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 6
     .hero__cta {
       order: 4;
     }
-    .hero__sign {
-      order: 5;
-    }
-    .wa-status {
-      order: 6;
-    }
     .hero__title,
     .hero__lead-text,
-    .hero__cta,
-    .hero__sign,
-    .wa-status {
+    .hero__cta {
       justify-self: start;
     }
     .slogan {
       font-size: clamp(2.05rem, 0.4rem + 8.4vw, 4rem);
-    }
-    .hero__cue {
-      display: none;
-    }
-    .heart--a {
-      left: 1%;
-    }
-    .heart--b {
-      right: 1%;
-    }
-  }
-  @media (max-width: 30rem) {
-    .seg {
-      gap: 0.35rem;
-    }
-    .seg__opt label {
-      padding-inline: 0.6rem;
-      font-size: 0.88rem;
-    }
-    .controls {
-      border-radius: 18px;
-    }
-  }
-  @media (max-height: 40rem) and (min-width: 62.01rem) {
-    .hero__cue {
-      display: none;
     }
   }
 </style>
