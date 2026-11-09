@@ -6,7 +6,7 @@ related_targets: []
 ---
 
 ## Scope and visitor mode
-Home única da DUO Estamparia. Modo Persuade: o visitante decide e age (pedir orçamento pelo WhatsApp).
+Home única da DUO Personalizados. Modo Persuade: o visitante decide e age (pedir orçamento pelo WhatsApp).
 
 ## Audience, job, action, proof, constraints
 Quem chega pelo Instagram ou por indicação, no celular, quer uma peça personalizada (camiseta, ecobag, bolsa ou copo). Ação: montar o pedido e abrir o WhatsApp com a mensagem pronta. Prova: o próprio nome do visitante aparecendo na peça. Restrições: sem preço, prazo, técnica, endereço, foto ou depoimento inventados; WhatsApp e Instagram vêm de `src/config/site.ts` e começam vazios; o lado pessoal do casal não pode se perder e o tom não pode ser sério demais.

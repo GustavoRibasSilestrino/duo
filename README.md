@@ -1,6 +1,6 @@
-# Site da DUO Estamparia
+# Site da DUO Personalizados
 
-Site de uma página (Astro, saída estática) para a DUO, estamparia de **Yasmin e Gabriel**. O visitante monta a peça com nome e número, vê na tela e manda o pedido de orçamento pelo WhatsApp.
+Site de uma página (Astro, saída estática) para a DUO Personalizados, de **Yasmin e Gabriel**. O visitante monta a peça com nome e número, vê na tela e manda o pedido de orçamento pelo WhatsApp.
 
 ## Rodar no seu computador
 

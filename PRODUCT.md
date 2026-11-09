@@ -13,10 +13,10 @@ Astro (saída estática). O usuário respondeu "Framework (Astro ou Next.js)" e 
 Pessoas e pequenos negócios que querem peças estampadas sob medida (camisetas, ecobags, bolsas e copos). Chegam, na maioria, pelo celular e por indicação ou redes sociais, e resolvem tudo por WhatsApp. (Perfil exato do público não foi confirmado pelo usuário; é uma suposição de trabalho.)
 
 ## Product Purpose
-A DUO é uma estamparia de peças personalizadas tocada por um casal, Yasmin e Gabriel. O site existe para apresentar o que fazem, mostrar que há duas pessoas de verdade por trás de cada pedido e levar o visitante a pedir um orçamento. Sucesso: o visitante entende em segundos o que a DUO estampa, sente quem está do outro lado e envia um pedido de orçamento pelo WhatsApp.
+A DUO Personalizados faz peças personalizadas (camisetas, ecobags, bolsas e copos) e é tocada por um casal, Yasmin e Gabriel. O site existe para apresentar o que fazem, mostrar que há duas pessoas de verdade por trás de cada pedido e levar o visitante a pedir um orçamento. Sucesso: o visitante entende em segundos o que a DUO estampa, sente quem está do outro lado e envia um pedido de orçamento pelo WhatsApp.
 
 ## Positioning
-Uma estamparia de casal: duas pessoas, o mesmo propósito. Slogan fixo do usuário: "2 corações, 2 objetivos, 1 propósito". Nenhum concorrente genérico de estampa pode dizer que é feito por Yasmin e Gabriel.
+Personalizados feitos por um casal: duas pessoas, o mesmo propósito. Slogan fixo do usuário: "2 corações, 2 objetivos, 1 propósito". Nenhum concorrente genérico de estampa pode dizer que é feito por Yasmin e Gabriel.
 
 ## Operating Context
 O fluxo real é: o cliente conta a ideia, a DUO responde por WhatsApp com orçamento e arte, e a peça é estampada. A ação principal do site é montar o pedido e abrir o WhatsApp com a mensagem pronta. Não haverá loja online nem pagamento no site.

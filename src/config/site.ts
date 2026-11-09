@@ -1,20 +1,20 @@
 /**
- * Configuração da DUO Estamparia.
+ * Configuração da DUO Personalizados.
  * É aqui que você preenche os contatos. Nada é inventado: enquanto os campos
  * ficarem vazios, os botões avisam que o contato ainda não foi configurado.
  */
 export const site = {
-  name: 'DUO Estamparia',
+  name: 'DUO Personalizados',
   short: 'DUO',
   slogan: '2 corações, 2 objetivos, 1 propósito',
   description:
-    'Estampamos camisetas, ecobags, bolsas e copos do seu jeito. Escreva o nome e o número, veja na peça e peça o orçamento pelo WhatsApp. DUO Estamparia, de Yasmin e Gabriel.',
+    'Camisetas, ecobags, bolsas e copos personalizados do seu jeito. Escreva o nome e o número, veja na peça e peça o orçamento pelo WhatsApp. DUO Personalizados, de Yasmin e Gabriel.',
   year: 2026,
 
   /** PREENCHA: WhatsApp com DDD. Pode ter máscara. Exemplo: '11 91234-5678'. */
   whatsapp: '',
 
-  /** PREENCHA: usuário do Instagram, sem o @. Exemplo: 'duo.estamparia'. */
+  /** PREENCHA: usuário do Instagram, sem o @. Exemplo: 'duo.personalizados'. */
   instagram: '',
 
   /** Endereço final do site (para o link de compartilhamento). Exemplo: 'https://www.seudominio.com.br'. */

@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-// Defina `site` com o endereço final (ex.: 'https://www.duoestamparia.com.br')
+// Defina `site` com o endereço final (ex.: 'https://www.duopersonalizados.com.br')
 // para gerar URLs canônicas, sitemap e imagem de compartilhamento absolutas.
 export default defineConfig({
   output: 'static',
