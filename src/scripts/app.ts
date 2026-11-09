@@ -1,4 +1,5 @@
 import { layoutPrint } from './layout';
+import './fx';
 
 type Kind = 'camiseta' | 'ecobag' | 'bolsa' | 'copo';
 type Color = 'preta' | 'branca' | 'roxa';
@@ -185,9 +186,6 @@ function paintPiece(wrap: HTMLElement, d: ReturnType<typeof display>) {
         ],
         { duration: 320, easing: 'cubic-bezier(.16,1,.3,1)' },
       );
-      $$<SVGTextElement>('.tw-top, .tw-stitch', g).forEach((t) =>
-        t.animate([{ opacity: 0.2 }, { opacity: 1 }], { duration: 260, easing: 'ease-out', delay: 60, fill: 'backwards' }),
-      );
     }
   }
 }
@@ -370,6 +368,7 @@ function updatePreview() {
 
 const heroStatus = $('[data-wa-status]');
 const heroStatusText = $('[data-wa-status-text]');
+const heroAnnounce = $('[data-wa-announce]');
 const MISSING =
   'O WhatsApp da DUO ainda não foi configurado neste site. Copie a mensagem e mande para a gente pelo número que você já tem.';
 
@@ -381,7 +380,8 @@ $$<HTMLAnchorElement>('[data-wa-link]').forEach((a) =>
     e.preventDefault();
     if (a.closest('.hero') && heroStatus && heroStatusText) {
       heroStatusText.textContent = MISSING;
-      heroStatus.classList.add('is-on');
+      heroStatus.hidden = false;
+      if (heroAnnounce) heroAnnounce.textContent = MISSING;
       return;
     }
     $('#pedido')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
@@ -413,6 +413,7 @@ async function copyMessage(target: Element | null) {
   const msg = ok ? 'Mensagem copiada. É só colar no WhatsApp.' : 'Não deu para copiar. Selecione o texto do bilhete e copie.';
   const box = target?.closest('.wa-status') ? heroStatusText : orderStatus;
   if (box) box.textContent = msg;
+  if (box === heroStatusText && heroAnnounce) heroAnnounce.textContent = msg;
 }
 for (const b of $$('[data-copy-msg]')) b.addEventListener('click', () => copyMessage(b));
 

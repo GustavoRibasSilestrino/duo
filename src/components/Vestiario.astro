@@ -55,11 +55,11 @@ const logoFor = (tone: string) => {
               class="item__num"
               text={p.number}
               tone="ghost"
-              vb="0 0 160 112"
-              x={80}
+              vb="0 0 190 118"
+              x={95}
               decorative
             />
-            <div class="item__art">
+            <div class="item__art" data-cursor="Montar">
               <Piece kind={p.key} color={s.color} title={`${p.label} com o logo da DUO estampado`}>
                 <g transform={`scale(${s.scale}) translate(-226 -127.5)`}>
                   <path fill={logo.fill} fill-rule="evenodd" d={logo.d} />
@@ -135,11 +135,12 @@ const logoFor = (tone: string) => {
   .item__art {
     position: relative;
     z-index: 1;
-    transition: transform 0.6s var(--ease-out);
+    transition: transform 0.35s var(--ease-out);
   }
   .item:hover .item__art,
   .item:focus-within .item__art {
-    transform: rotate(var(--tilt)) translateY(-4px);
+    transform: perspective(800px) rotate(var(--tilt)) translateY(-4px) rotateX(calc(var(--iy, 0) * -10deg))
+      rotateY(calc(var(--ix, 0) * 14deg));
   }
   .item__art :global(svg) {
     width: 100%;
@@ -149,9 +150,9 @@ const logoFor = (tone: string) => {
     position: relative;
     z-index: 1;
     margin-top: 0.4rem;
-    font: 900 clamp(1.9rem, 3vw, 2.5rem) / 0.95 var(--f-display);
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
+    font: 800 clamp(1.25rem, 1rem + 1.2vw, 1.8rem) / 1.1 var(--f-display);
+    letter-spacing: -0.02em;
+    word-spacing: 0.1em;
     color: #fff;
   }
   .item__line {
@@ -172,7 +173,7 @@ const logoFor = (tone: string) => {
     background: none;
     border: 0;
     color: #fff;
-    font: 700 1rem/1.2 var(--f-text);
+    font: 600 0.95rem/1.2 var(--f-text);
     cursor: pointer;
     text-decoration: underline dashed;
     text-decoration-color: var(--purple-hi);

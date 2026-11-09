@@ -1,0 +1,289 @@
+---
+import Piece from './Piece.astro';
+
+// o logo "duo" em caminhos, centrado na origem; as cores vêm da classe de tom da peça (lg-d / lg-u)
+const logo = {
+  d: 'M122 40H150V203H122V196.73A53 53 0 1 1 122 103.27ZM72 150A25 28 0 1 1 122 150A25 28 0 1 1 72 150Z',
+  u: 'M177 112V161A54 54 0 0 0 285 161V112H257V161A26 29 0 0 1 205 161V112Z',
+  o: 'M304 150A53 53 0 1 1 410 150A53 53 0 1 1 304 150ZM332 150A25 28 0 1 1 382 150A25 28 0 1 1 332 150Z',
+};
+
+const caps = [
+  'No peito, o seu logo ou a sua arte.',
+  'Nas costas, nome e número, como camisa de turma.',
+  'Na cor que você escolher. Cada peça sai do seu jeito.',
+];
+---
+
+<section class="turn ground-ink" id="camisa" aria-labelledby="turn-title" data-turn data-cap="1">
+  <div class="turn__track">
+    <div class="turn__stage">
+      <div class="container turn__grid">
+        <div class="turn__copy">
+          <h2 class="h2" id="turn-title">A mesma camisa, do seu jeito</h2>
+          <div class="turn__caps">
+            {caps.map((c, i) => (
+              <p class="lead turn__cap" data-cap-item={i + 1}>{c}</p>
+            ))}
+          </div>
+          <a class="btn btn--primary turn__cta" href="#topo">
+            <span>Montar a minha</span>
+          </a>
+        </div>
+
+        <div class="turn__scene" aria-hidden="true">
+          <div class="turn__float turn__float--a" style="--d:-70;--tilt:-14">
+            <Piece kind="ecobag" color="branca">
+              <g transform="scale(.3) translate(-226 -127.5)">
+                <path class="lg-d" fill-rule="evenodd" d={logo.d} />
+                <path class="lg-u" d={logo.u} />
+                <path class="lg-d" fill-rule="evenodd" d={logo.o} />
+              </g>
+            </Piece>
+          </div>
+          <div class="turn__float turn__float--b" style="--d:90;--tilt:18">
+            <Piece kind="bolsa" color="roxa">
+              <g transform="scale(.3) translate(-226 -127.5)">
+                <path class="lg-d" fill-rule="evenodd" d={logo.d} />
+                <path class="lg-u" d={logo.u} />
+                <path class="lg-d" fill-rule="evenodd" d={logo.o} />
+              </g>
+            </Piece>
+          </div>
+          <div class="turn__float turn__float--c" style="--d:-40;--tilt:-22">
+            <Piece kind="copo" color="branca">
+              <g transform="scale(.26) translate(-226 -127.5)">
+                <path class="lg-d" fill-rule="evenodd" d={logo.d} />
+                <path class="lg-u" d={logo.u} />
+                <path class="lg-d" fill-rule="evenodd" d={logo.o} />
+              </g>
+            </Piece>
+          </div>
+
+          <div class="turn__rot" data-turn-rot>
+            <div class="turn__face turn__face--front">
+              <Piece kind="camiseta" view="front" color="preta">
+                <g transform="scale(.27) translate(-226 -127.5)">
+                  <path class="lg-d" fill-rule="evenodd" d={logo.d} />
+                  <path class="lg-u" d={logo.u} />
+                  <path class="lg-d" fill-rule="evenodd" d={logo.o} />
+                </g>
+              </Piece>
+            </div>
+            <div class="turn__face turn__face--back">
+              <Piece kind="camiseta" live color="preta" name="Yasmin" num="1" marks={false} />
+            </div>
+          </div>
+          <span class="turn__floor"></span>
+        </div>
+      </div>
+
+      <div class="turn__progress" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .turn__stage {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3.5rem, 9vw, 6.5rem);
+  }
+  .turn__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(1.5rem, 5vw, 5rem);
+    align-items: center;
+  }
+  .turn__copy {
+    display: grid;
+    gap: clamp(1rem, 2.5vh, 1.6rem);
+    justify-items: start;
+  }
+  .turn__caps {
+    display: grid;
+  }
+  .turn__cap {
+    max-width: 26rem;
+    color: var(--on-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .turn__scene {
+    position: relative;
+    width: min(100%, 34rem);
+    aspect-ratio: 400 / 420;
+    margin-inline: auto;
+    perspective: 1200px;
+  }
+  .turn__rot {
+    position: absolute;
+    inset: 4% 8%;
+    transform-style: preserve-3d;
+    transform: rotateY(calc(var(--r, 0) * 1deg));
+    will-change: transform;
+  }
+  .turn__face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .turn__face--back {
+    transform: rotateY(180deg);
+  }
+  .turn__face :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .turn__floor {
+    position: absolute;
+    left: 24%;
+    right: 24%;
+    bottom: 0;
+    height: 4.5%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  /* as outras peças acompanham a rolagem em ritmos diferentes */
+  .turn__float {
+    position: absolute;
+    z-index: 2;
+    transform: translate3d(0, calc(var(--p, 0) * var(--d) * 1px), 0) rotate(calc(var(--p, 0) * var(--tilt) * 1deg));
+    will-change: transform;
+  }
+  .turn__float :global(svg) {
+    width: 100%;
+    height: auto;
+  }
+  .turn__float--a {
+    left: -3%;
+    top: 4%;
+    width: 24%;
+  }
+  .turn__float--b {
+    right: -4%;
+    top: 40%;
+    width: 27%;
+  }
+  .turn__float--c {
+    left: 3%;
+    bottom: 5%;
+    width: 17%;
+  }
+
+  .turn__progress {
+    display: none;
+  }
+
+  /* sem JavaScript ou com movimento reduzido: a frente e as costas lado a lado, sem giro */
+  .turn__rot {
+    position: relative;
+    inset: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4%;
+    transform: none;
+  }
+  .turn__face {
+    position: relative;
+    inset: auto;
+    transform: none !important;
+    backface-visibility: visible;
+  }
+  .turn__scene {
+    perspective: none;
+  }
+  .turn__float {
+    display: none;
+  }
+
+  /* versão interativa: palco fixo e a camisa gira conforme a rolagem */
+  :global(.js:not(.rm)) .turn__track {
+    height: 400svh;
+  }
+  :global(.js:not(.rm)) .turn__stage {
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100vh - var(--header-h));
+    height: calc(100svh - var(--header-h));
+    padding-block: 0;
+    display: grid;
+    align-items: center;
+  }
+  :global(.js:not(.rm)) .turn__scene {
+    perspective: 1200px;
+  }
+  :global(.js:not(.rm)) .turn__rot {
+    position: absolute;
+    inset: 4% 8%;
+    display: block;
+    transform: rotateY(calc(var(--r, 0) * 1deg));
+  }
+  :global(.js:not(.rm)) .turn__face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+  }
+  :global(.js:not(.rm)) .turn__face--back {
+    transform: rotateY(180deg) !important;
+  }
+  :global(.js:not(.rm)) .turn__float {
+    display: block;
+  }
+  :global(.js:not(.rm)) .turn__cap {
+    grid-area: 1 / 1;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.5s var(--ease-out),
+      transform 0.6s var(--ease-out);
+  }
+  :global(.js:not(.rm)) .turn[data-cap='1'] .turn__cap[data-cap-item='1'],
+  :global(.js:not(.rm)) .turn[data-cap='2'] .turn__cap[data-cap-item='2'],
+  :global(.js:not(.rm)) .turn[data-cap='3'] .turn__cap[data-cap-item='3'] {
+    opacity: 1;
+    transform: none;
+  }
+  :global(.js:not(.rm)) .turn__progress {
+    display: block;
+    position: absolute;
+    left: var(--gutter);
+    right: var(--gutter);
+    bottom: 1.4rem;
+    border-top: 2px dashed rgba(255, 255, 255, 0.3);
+  }
+  :global(.js:not(.rm)) .turn__progress span {
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 100%;
+    height: 2px;
+    background: var(--purple-hi);
+    transform-origin: 0 50%;
+    transform: scaleX(var(--p, 0));
+  }
+
+  @media (max-width: 52rem) {
+    .turn__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+      align-content: center;
+    }
+    .turn__scene {
+      width: min(100%, 20rem, 44svh);
+      order: -1;
+    }
+    :global(.js:not(.rm)) .turn__copy {
+      gap: 0.6rem;
+    }
+    :global(.js:not(.rm)) .turn__cta {
+      display: none;
+    }
+    .turn__float--c {
+      display: none !important;
+    }
+  }
+</style>

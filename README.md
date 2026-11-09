@@ -41,9 +41,21 @@ Tela roxa, o logo se monta (o **u** cai por último) e um círculo de tinta cres
 - `?nointro` pula a entrada;
 - `?review` mostra a página inteira, parada (útil para capturas de tela).
 
+## Fonte
+
+O site usa **Poppins** (pesos 400 a 800), escolhida por ser a mais parecida com a letra do logotipo do GastroMatch que você mandou. Se for outra, troque em dois lugares: os `import` de `@fontsource/...` em `src/layouts/Base.astro` e as variáveis `--f-display` e `--f-text` no começo de `src/styles/global.css`. A letra manuscrita (Mansalva) aparece só na assinatura "Feito pela Yasmin e pelo Gabriel" e no bilhete do casal.
+
+## Animações
+
+- **Primeira tela:** o slogan sobe linha a linha, os números sorteiam e pousam, a camisa digita sozinha uma vez e para. Com mouse, a camisa e os corações inclinam e a luz nos furinhos do fundo segue o cursor.
+- **Camisa que gira:** logo depois da primeira tela, a camiseta gira com a rolagem (peito com o logo, costas com nome e número) e troca de cor (preta, branca, roxa), enquanto ecobag, bolsa e copo flutuam em ritmos diferentes.
+- **Mouse:** cursor próprio (ponto e anel), botões que puxam o cursor, peças e figurinhas que inclinam. Só liga com mouse de verdade e sem "reduzir movimento".
+- **Celular e tela pequena:** os tamanhos acompanham a largura da tela (de 320 px a telas grandes), sem rolagem lateral. Quem desativa animações no sistema vê tudo parado e legível.
+
 ## Onde mexer no visual
 
-- Cores, espaços e movimento: `src/styles/global.css` (variáveis no início).
+- Cores, espaços, fontes e movimento: `src/styles/global.css` (variáveis no início).
+- Primeira tela: `src/components/Hero.astro`. Camisa que gira: `src/components/ShirtTurn.astro`. Efeitos de mouse e de rolagem: `src/scripts/fx.ts`.
 - Letras de aplique (os números grandes): `src/components/Twill.astro`.
 - Peças (camiseta, ecobag, bolsa, copo): `src/components/Piece.astro`.
 - Comportamento (prévia, formulário, entrada, história): `src/scripts/app.ts`.

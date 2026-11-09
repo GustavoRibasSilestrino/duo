@@ -18,3 +18,5 @@ dist/
 
 .vercel
 .env*
+.impeccable/detect.json
+.impeccable/*.sh

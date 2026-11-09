@@ -15,6 +15,8 @@ interface Props {
   class?: string;
   marks?: boolean;
   title?: string;
+  /** só camiseta: 'back' (costas, padrão) ou 'front' (peito, com decote fundo) */
+  view?: 'back' | 'front';
 }
 const {
   kind,
@@ -25,11 +27,15 @@ const {
   class: cls = '',
   marks = live,
   title = '',
+  view = 'back',
 } = Astro.props;
 
 // centro e tamanho da área de estampa, em unidades do viewBox 400 x 420
 const AREA = {
-  camiseta: { cx: 200, cy: 214, w: 150, h: 190 },
+  camiseta:
+    view === 'front'
+      ? { cx: 200, cy: 150, w: 104, h: 64 }
+      : { cx: 200, cy: 214, w: 150, h: 190 },
   ecobag: { cx: 200, cy: 266, w: 150, h: 176 },
   bolsa: { cx: 200, cy: 314, w: 150, h: 108 },
   copo: { cx: 200, cy: 246, w: 100, h: 160 },
@@ -67,13 +73,23 @@ const lay = live
   {kind === 'camiseta' && (
     <g class="body">
       <path
-        d="M150 36 68 64 28 140l56 28 28-38v262h176V130l28 38 56-28-40-76-82-28c-18 26-82 26-100 0Z"
+        d={
+          view === 'front'
+            ? 'M150 36 68 64 28 140l56 28 28-38v262h176V130l28 38 56-28-40-76-82-28c-18 50-82 50-100 0Z'
+            : 'M150 36 68 64 28 140l56 28 28-38v262h176V130l28 38 56-28-40-76-82-28c-18 26-82 26-100 0Z'
+        }
         fill="var(--piece)"
         stroke="var(--piece)"
         stroke-width="8"
         stroke-linejoin="round"
       />
-      <path d="M152 38c18 28 78 28 96 0" fill="none" stroke="var(--piece-shade)" stroke-width="9" stroke-linecap="round" />
+      <path
+        d={view === 'front' ? 'M152 38c18 44 78 44 96 0' : 'M152 38c18 28 78 28 96 0'}
+        fill="none"
+        stroke="var(--piece-shade)"
+        stroke-width="9"
+        stroke-linecap="round"
+      />
       <path d="M112 130C108 100 90 80 68 64M288 130c4-30 22-50 44-66" fill="none" stroke="var(--piece-shade)" stroke-width="3" opacity=".7" />
       <path d="M112 374h176" fill="none" stroke="var(--piece-shade)" stroke-width="3" stroke-dasharray="5 5" />
     </g>

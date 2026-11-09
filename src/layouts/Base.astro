@@ -1,6 +1,9 @@
 ---
-import '@fontsource-variable/big-shoulders-display';
-import '@fontsource-variable/figtree';
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
+import '@fontsource/poppins/800.css';
 import '@fontsource/mansalva/latin-400.css';
 import '@fontsource/mansalva/latin-ext-400.css';
 import '../styles/global.css';
@@ -70,6 +73,7 @@ const jsonLd = {
         var q = location.search;
         // ?review mostra a página estática e inteira (para revisão e capturas); ?nointro pula a entrada
         var review = /[?&]review(&|$)/.test(q);
+        if (review) d.classList.add('review');
         var rm = matchMedia('(prefers-reduced-motion: reduce)').matches || review;
         if (rm) d.classList.add('rm');
         var seen = false;
