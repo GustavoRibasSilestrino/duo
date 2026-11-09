@@ -1,0 +1,340 @@
+---
+import Twill from './Twill.astro';
+
+const steps = [
+  {
+    n: '2',
+    title: 'Dois corações',
+    text: 'Yasmin e Gabriel tocam a DUO juntos. Quem responde o seu pedido é gente de verdade, e são duas.',
+  },
+  {
+    n: '2',
+    title: 'Dois objetivos',
+    text: 'O seu: a peça sair do jeito que você imaginou. O nosso: ter orgulho de ter estampado.',
+  },
+  {
+    n: '1',
+    title: 'Um propósito',
+    text: 'Fazer da sua ideia uma coisa que dá para vestir, carregar e usar todo dia.',
+  },
+];
+
+const heart = 'M0 62C-60 20-78-20-52-46-30-66-6-56 0-34 6-56 30-66 52-46 78-20 60 20 0 62Z';
+---
+
+<section class="story" id="historia" aria-labelledby="story-title" data-story data-step="1">
+  <div class="story__track">
+    <div class="story__stage">
+      <span class="story__flood" aria-hidden="true"></span>
+
+      <div class="container story__grid">
+        <div class="story__copy">
+          <h2 class="sr-only" id="story-title">O que está por trás do slogan</h2>
+          {steps.map((s, i) => (
+            <article class="panel" data-panel={i + 1}>
+              <Twill class="panel__num" text={s.n} tone="purple" label={`Número ${s.n}`} />
+              <h3 class="h2 panel__title">{s.title}</h3>
+              <p class="lead">{s.text}</p>
+            </article>
+          ))}
+        </div>
+
+        <div class="story__art" aria-hidden="true">
+          <svg viewBox="0 0 400 320" focusable="false">
+            <g transform="translate(200 160)">
+              <g class="it ha">
+                <g class="beat"><path class="heart heart--a" d={heart} /></g>
+              </g>
+              <g class="it hb">
+                <g class="beat beat--late"><path class="heart heart--b" d={heart} /></g>
+              </g>
+              <g class="it ta">
+                <g class="beat">
+                  <g class="target target--a">
+                    <circle r="52" /><circle r="40" /><circle r="28" /><circle r="14" />
+                  </g>
+                </g>
+              </g>
+              <g class="it tb">
+                <g class="beat beat--late">
+                  <g class="target target--b">
+                    <circle r="52" /><circle r="40" /><circle r="28" /><circle r="14" />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="story__progress" aria-hidden="true"><span data-story-bar></span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .story {
+    --hearts: #fff;
+    background: var(--ink);
+    color: #fff;
+  }
+  .story__track {
+    position: relative;
+  }
+  .story__stage {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--purple);
+    background-image: radial-gradient(circle at 50% 50%, rgba(11, 11, 15, 0.12) 1.1px, transparent 1.7px);
+    background-size: 9px 9px;
+    padding-block: clamp(3.5rem, 8vw, 6rem);
+  }
+  .story__flood {
+    display: none;
+  }
+  .story__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+  }
+  .story__copy {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4rem);
+  }
+  .panel {
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+  }
+  .panel :global(.panel__num) {
+    height: clamp(5.5rem, 16vh, 10rem);
+    width: auto;
+  }
+  .panel__title {
+    color: #fff;
+  }
+  .panel .lead {
+    color: #fff;
+  }
+
+  /* ---- arte: corações e alvos ---- */
+  .story__art svg {
+    width: min(100%, 30rem);
+    height: auto;
+    margin-inline: auto;
+  }
+  .it {
+    --x: 0px;
+    --y: 0px;
+    --s: 1;
+    transform: translate(var(--x), var(--y)) scale(var(--s));
+    transition:
+      transform 0.95s var(--ease-quart),
+      opacity 0.5s var(--ease-out);
+  }
+  .heart--a {
+    fill: #fff;
+  }
+  .heart--b {
+    fill: var(--ink);
+  }
+  .target--a circle:nth-child(odd) {
+    fill: #fff;
+  }
+  .target--a circle:nth-child(even) {
+    fill: var(--purple);
+  }
+  .target--b circle:nth-child(odd) {
+    fill: var(--ink);
+  }
+  .target--b circle:nth-child(even) {
+    fill: #fff;
+  }
+  .beat {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  /* passo 1: dois corações lado a lado */
+  [data-step='1'] .ha {
+    --x: -84px;
+  }
+  [data-step='1'] .hb {
+    --x: 84px;
+  }
+  [data-step='1'] .ta,
+  [data-step='1'] .tb {
+    opacity: 0;
+    --s: 0.3;
+  }
+  /* passo 2: os corações sobem e dois alvos entram */
+  [data-step='2'] .ha {
+    --x: -84px;
+    --y: -92px;
+    --s: 0.5;
+  }
+  [data-step='2'] .hb {
+    --x: 84px;
+    --y: -92px;
+    --s: 0.5;
+  }
+  [data-step='2'] .ta {
+    --x: -84px;
+    --y: 44px;
+  }
+  [data-step='2'] .tb {
+    --x: 84px;
+    --y: 44px;
+  }
+  /* passo 3: viram um só, com um alvo no meio */
+  [data-step='3'] .ha {
+    --s: 1.65;
+  }
+  [data-step='3'] .hb {
+    --s: 1.65;
+    opacity: 0;
+  }
+  [data-step='3'] .ta {
+    opacity: 0;
+  }
+  [data-step='3'] .tb {
+    --y: 10px;
+    --s: 0.62;
+  }
+
+  @keyframes beat {
+    0%,
+    60%,
+    100% {
+      transform: scale(1);
+    }
+    12% {
+      transform: scale(1.09);
+    }
+    26% {
+      transform: scale(1.02);
+    }
+    38% {
+      transform: scale(1.06);
+    }
+  }
+  .story__progress {
+    display: none;
+  }
+
+  /* ---- versão estática (sem JS ou com movimento reduzido): tudo empilhado e legível ---- */
+  .story__art {
+    order: -1;
+  }
+  [data-step] .it {
+    transition: none;
+  }
+
+  /* ---- versão interativa: palco fixo e três passos conforme a rolagem ---- */
+  :global(.js:not(.rm)) .story__track {
+    height: 320svh;
+  }
+  :global(.js:not(.rm)) .story__stage {
+    position: sticky;
+    top: var(--header-h);
+    height: calc(100svh - var(--header-h));
+    padding-block: 0;
+    display: grid;
+    align-items: center;
+  }
+  :global(.js:not(.rm)) .story__flood {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    clip-path: circle(150% at 72% 50%);
+    transition: clip-path 1.2s var(--ease-quart);
+    pointer-events: none;
+    z-index: 3;
+  }
+  :global(.js:not(.rm)) .story.is-in .story__flood {
+    clip-path: circle(0% at 72% 50%);
+  }
+  :global(.js:not(.rm)) .story__copy {
+    display: grid;
+    gap: 0;
+  }
+  :global(.js:not(.rm)) .panel {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.55s var(--ease-out),
+      transform 0.7s var(--ease-out);
+    pointer-events: none;
+  }
+  :global(.js:not(.rm)) .story[data-step='1'] .panel[data-panel='1'],
+  :global(.js:not(.rm)) .story[data-step='2'] .panel[data-panel='2'],
+  :global(.js:not(.rm)) .story[data-step='3'] .panel[data-panel='3'] {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  :global(.js:not(.rm)) .story.is-in .beat {
+    animation: beat 1.7s ease-in-out infinite;
+  }
+  :global(.js:not(.rm)) .story.is-in .beat--late {
+    animation-delay: 0.85s;
+  }
+  :global(.js:not(.rm)) [data-step] .it {
+    transition:
+      transform 0.95s var(--ease-quart),
+      opacity 0.5s var(--ease-out);
+  }
+  :global(.js:not(.rm)) .story__progress {
+    display: block;
+    position: absolute;
+    left: var(--gutter);
+    right: var(--gutter);
+    bottom: 1.5rem;
+    height: 0;
+    border-top: 2px dashed rgba(255, 255, 255, 0.5);
+    z-index: 4;
+  }
+  :global(.js:not(.rm)) .story__progress span {
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transform-origin: 0 50%;
+    transform: scaleX(var(--p, 0));
+  }
+
+  /* sem movimento: estado final dos desenhos */
+  :global(.rm) .story[data-step] .ha {
+    --s: 1.4;
+  }
+  :global(.rm) .story[data-step] .hb,
+  :global(.rm) .story[data-step] .ta {
+    opacity: 0;
+  }
+  :global(.rm) .story[data-step] .tb {
+    --y: 10px;
+    --s: 0.62;
+  }
+
+  @media (max-width: 62rem) {
+    .story__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1rem;
+    }
+    .story__art svg {
+      width: min(100%, 17rem);
+    }
+    .panel :global(.panel__num) {
+      height: clamp(4rem, 11svh, 6rem);
+    }
+    :global(.js:not(.rm)) .story__grid {
+      align-content: center;
+    }
+  }
+</style>

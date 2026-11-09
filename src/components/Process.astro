@@ -1,0 +1,116 @@
+---
+import Twill from './Twill.astro';
+
+const steps = [
+  {
+    n: '1',
+    title: 'Você conta a ideia',
+    text: 'Monte a prévia aqui em cima e mande pelo WhatsApp: a peça, o nome, o número e tudo o que você quiser.',
+  },
+  {
+    n: '2',
+    title: 'A gente responde',
+    text: 'Yasmin e Gabriel respondem com o orçamento e a arte, e ajustam tudo com você.',
+  },
+  {
+    n: '3',
+    title: 'Você aprova',
+    text: 'Você aprova a arte e combina o orçamento com a gente antes de qualquer coisa ser estampada.',
+  },
+  {
+    n: '4',
+    title: 'A gente estampa',
+    text: 'Estampamos a sua peça e combinamos o resto com você, pelo WhatsApp mesmo.',
+  },
+];
+---
+
+<section class="process ground-ink section" id="como-funciona" aria-labelledby="process-title">
+  <div class="container process__grid">
+    <div class="process__head reveal">
+      <h2 class="h2" id="process-title">Como funciona</h2>
+      <p class="lead">Quatro passos curtos, e quase tudo acontece numa conversa.</p>
+    </div>
+
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step reveal" style={`--d:${i * 0.08}s`}>
+          <Twill class="step__num" text={s.n} tone="dark" label={`Passo ${s.n}`} />
+          <div class="step__body">
+            <h3 class="step__title">{s.title}</h3>
+            <p>{s.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .process__head {
+    display: grid;
+    gap: 1.1rem;
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .step {
+    position: relative;
+    display: grid;
+    grid-template-columns: clamp(4.5rem, 9vw, 7rem) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2.25rem);
+    align-items: center;
+    padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  /* costura que se desenha quando o passo aparece */
+  .step::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 2px dashed rgba(255, 255, 255, 0.28);
+    transform-origin: 0 50%;
+  }
+  :global(.js) .step.reveal::after {
+    transform: scaleX(0);
+    transition: transform 0.9s var(--ease-quart) calc(var(--d, 0s) + 0.2s);
+  }
+  :global(.js) .step.reveal.in::after {
+    transform: scaleX(1);
+  }
+  .step :global(.step__num) {
+    width: 100%;
+    height: auto;
+  }
+  .step__title {
+    font: 900 clamp(1.9rem, 3.2vw, 2.6rem) / 0.95 var(--f-display);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 0.45rem;
+  }
+  .step__body p {
+    max-width: 34rem;
+    color: var(--on-dark);
+  }
+
+  @media (max-width: 52rem) {
+    .process__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .process__head {
+      position: static;
+    }
+  }
+</style>

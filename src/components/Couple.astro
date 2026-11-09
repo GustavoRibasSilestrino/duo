@@ -1,0 +1,159 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Twill from './Twill.astro';
+
+// Coloque as fotos em public/couple/yasmin.jpg e public/couple/gabriel.jpg (ou .png/.webp).
+// Sem foto, a figurinha usa a inicial em aplique.
+function findPhoto(name: string): string | null {
+  for (const ext of ['jpg', 'jpeg', 'png', 'webp']) {
+    if (fs.existsSync(path.join(process.cwd(), 'public', 'couple', `${name}.${ext}`))) {
+      return `/couple/${name}.${ext}`;
+    }
+  }
+  return null;
+}
+
+const people = [
+  { name: 'Yasmin', initial: 'Y', no: '1', tilt: '-3deg', photo: findPhoto('yasmin') },
+  { name: 'Gabriel', initial: 'G', no: '2', tilt: '2.5deg', photo: findPhoto('gabriel') },
+];
+---
+
+<section class="couple section" id="quem-faz" aria-labelledby="couple-title">
+  <div class="container couple__grid">
+    <div class="couple__copy reveal">
+      <h2 class="h2" id="couple-title">Dois corações atrás de cada pedido</h2>
+      <p class="lead">
+        A DUO é da Yasmin e do Gabriel. Quando você chama a gente, é a gente mesmo que responde, e
+        cuida da sua peça como se fosse para uma pessoa da família.
+      </p>
+      <p class="note" aria-hidden="true">Duas pessoas, o mesmo cuidado com o seu pedido.</p>
+    </div>
+
+    <ul class="figs">
+      {people.map((p, i) => (
+        <li class="fig reveal" style={`--tilt:${p.tilt};--d:${i * 0.12}s`}>
+          <figure class="fig__card">
+            <span class="fig__no" aria-hidden="true">Nº {p.no}</span>
+            <div class="fig__photo">
+              {p.photo ? (
+                <img src={p.photo} alt={`Foto de ${p.name}`} width="480" height="560" loading="lazy" decoding="async" />
+              ) : (
+                <Twill class="fig__initial" text={p.initial} tone="dark" label={`Inicial de ${p.name}`} />
+              )}
+            </div>
+            <figcaption class="fig__name">{p.name}</figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .couple {
+    background: var(--ink-2);
+    border-block: 1.5px dashed var(--line-dark);
+  }
+  .couple__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+  }
+  .couple__copy {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .figs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+  .fig:nth-child(2) {
+    margin-top: 2.5rem;
+  }
+  .fig__card {
+    position: relative;
+    margin: 0;
+    padding: 0.6rem;
+    background: #fff;
+    color: var(--ink);
+    border-radius: 6px;
+    transform: rotate(var(--tilt));
+    box-shadow: 0 22px 40px -18px rgba(0, 0, 0, 0.7);
+    transition:
+      transform 0.6s var(--ease-out),
+      box-shadow 0.6s var(--ease-out);
+  }
+  .fig:hover .fig__card {
+    transform: rotate(0) translateY(-6px);
+    box-shadow: 0 30px 50px -18px rgba(0, 0, 0, 0.75);
+  }
+  .fig__no {
+    position: absolute;
+    z-index: 2;
+    margin: 0.7rem 0 0 0.75rem;
+    padding: 0.1rem 0.55rem 0.2rem;
+    font: 900 1.5rem/1 var(--f-display);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 3px;
+  }
+  .fig__photo {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 4.6;
+    background-color: var(--purple);
+    background-image: radial-gradient(circle at 50% 50%, rgba(11, 11, 15, 0.14) 1.1px, transparent 1.7px);
+    background-size: 9px 9px;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .fig__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .fig__photo :global(.fig__initial) {
+    width: 62%;
+    height: auto;
+    --tw-under: var(--ink);
+    --tw-top: #fff;
+    --tw-stitch: var(--purple);
+  }
+  .fig__name {
+    padding: 0.55rem 0.35rem 0.3rem;
+    font: 900 clamp(1.8rem, 3vw, 2.4rem) / 1 var(--f-display);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  :global(.js) .fig.reveal {
+    transform: translateY(26px) rotate(calc(var(--tilt) * -1.5));
+  }
+  :global(.js) .fig.reveal.in {
+    transform: none;
+    transition:
+      opacity 0.7s var(--ease-out),
+      transform 1.1s var(--ease-out);
+    transition-delay: var(--d, 0s);
+  }
+
+  @media (max-width: 52rem) {
+    .couple__grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+  @media (max-width: 26rem) {
+    .fig:nth-child(2) {
+      margin-top: 1.25rem;
+    }
+  }
+</style>

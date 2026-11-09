@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Vestiario from '../components/Vestiario.astro';
+import Story from '../components/Story.astro';
+import Process from '../components/Process.astro';
+import Couple from '../components/Couple.astro';
+import Order from '../components/Order.astro';
+import Footer from '../components/Footer.astro';
+import StickyCta from '../components/StickyCta.astro';
+---
+
+<Base>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+  <Header />
+  <main id="conteudo">
+    <Hero />
+    <Marquee />
+    <Vestiario />
+    <Story />
+    <Process />
+    <Couple />
+    <Order />
+  </main>
+  <Footer />
+  <StickyCta />
+  <script>
+    import '../scripts/app.ts';
+  </script>
+</Base>

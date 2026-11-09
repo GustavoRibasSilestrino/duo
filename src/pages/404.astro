@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import Wordmark from '../components/Wordmark.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Base title="Página não encontrada | DUO Estamparia" noindex>
+  <main class="lost ground-ink" id="conteudo">
+    <div class="lost__box">
+      <Wordmark variant="reversed" class="lost__logo" drop label="DUO Estamparia" />
+      <h1>Essa página caiu do cabide</h1>
+      <p>O endereço que você abriu não existe (ou mudou de lugar). A gente leva você de volta.</p>
+      <a class="btn btn--primary" href="/">
+        <Icon name="arrow-right" />
+        <span>Voltar para o início</span>
+      </a>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .lost {
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 2rem var(--gutter);
+  }
+  .lost__box {
+    display: grid;
+    gap: 1.25rem;
+    justify-items: start;
+    max-width: 34rem;
+  }
+  .lost :global(.lost__logo) {
+    height: clamp(4rem, 12vw, 6rem);
+    width: auto;
+  }
+  h1 {
+    font: 900 clamp(2.6rem, 8vw, 4.5rem) / 0.92 var(--f-display);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: #fff;
+    text-wrap: balance;
+  }
+</style>

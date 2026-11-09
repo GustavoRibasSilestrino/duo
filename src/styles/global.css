@@ -1,0 +1,390 @@
+/* DUO Estamparia — "Camisa de turma". Duas tintas (roxo e branco) sobre jersey preto. */
+
+:root {
+  --ink: #0b0b0f;
+  --ink-2: #14121c;
+  --ink-3: #1e1a2b;
+  --purple: #7a3cff;
+  --purple-deep: #6a2bef;
+  --purple-hi: #8f5cff;
+  --lilac: #efe9ff;
+  --note: #cdbbff;
+  --day: #f7f4ff;
+  --white: #fff;
+
+  --on-dark: rgba(255, 255, 255, 0.84);
+  --on-dark-soft: rgba(255, 255, 255, 0.66);
+  --line-dark: rgba(255, 255, 255, 0.18);
+  --on-day: #1a1626;
+  --on-day-soft: #4a4560;
+  --line-day: rgba(11, 11, 15, 0.2);
+
+  --f-display: 'Big Shoulders Display Variable', 'Arial Narrow', sans-serif;
+  --f-text: 'Figtree Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-note: 'Mansalva', 'Segoe Print', 'Comic Sans MS', cursive;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --gutter: clamp(1rem, 4.5vw, 2.75rem);
+  --maxw: 82rem;
+  --header-h: 4.5rem;
+  --focus: #fff;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  background: var(--ink);
+  accent-color: var(--purple);
+  scrollbar-color: var(--purple) var(--ink);
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--on-dark);
+  font: 400 1.0625rem/1.62 var(--f-text);
+  font-variant-numeric: tabular-nums;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--purple);
+  color: #fff;
+}
+input,
+textarea {
+  caret-color: var(--purple-hi);
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--purple);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1.5px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--purple);
+  border-radius: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  transform: translateY(-200%);
+  transition: transform 0.2s var(--ease-out);
+}
+.skip-link:focus {
+  transform: none;
+}
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--maxw));
+  margin-inline: auto;
+}
+
+/* ---------- Chão: jersey preto, roxo e dia ---------- */
+.ground-ink {
+  background-color: var(--ink);
+  /* furinhos de tecido de jersey */
+  background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.045) 1.1px, transparent 1.7px);
+  background-size: 9px 9px;
+}
+.ground-purple {
+  background: var(--purple);
+  color: #fff;
+  --focus: #fff;
+}
+.ground-day {
+  background: var(--day);
+  color: var(--on-day);
+  --focus: var(--ink);
+}
+.ground-day :focus-visible {
+  box-shadow: 0 0 0 6px var(--purple-hi);
+}
+
+.section {
+  padding-block: clamp(4.5rem, 10vw, 8.5rem);
+}
+
+/* ---------- Tipos ---------- */
+.h2 {
+  font: 800 clamp(2.4rem, 5.4vw, 4.5rem) / 0.94 var(--f-display);
+  letter-spacing: 0.004em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: #fff;
+}
+.ground-day .h2 {
+  color: var(--ink);
+}
+.lead {
+  font-size: clamp(1.125rem, 1.6vw, 1.3rem);
+  line-height: 1.55;
+  max-width: 38rem;
+  text-wrap: pretty;
+}
+.note {
+  font-family: var(--f-note);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: var(--note);
+}
+
+/* ---------- Botões: etiqueta costurada ---------- */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.6rem;
+  border: 0;
+  border-radius: 4px;
+  font: 700 1.0625rem/1.1 var(--f-text);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.25s var(--ease-out),
+    background-color 0.2s,
+    box-shadow 0.25s var(--ease-out);
+}
+.btn svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  flex: none;
+}
+.btn--primary {
+  background: var(--purple);
+  color: #fff;
+}
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.55);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.btn--primary:hover {
+  background: var(--purple-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px -10px rgba(122, 60, 255, 0.65);
+}
+.btn--primary:active {
+  transform: translateY(0) scale(0.985);
+  box-shadow: none;
+}
+.btn--ghost {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.45);
+}
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.btn--ink {
+  background: var(--ink);
+  color: #fff;
+}
+.btn--ink::before {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.45);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.btn--ink:hover {
+  background: var(--ink-3);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px -10px rgba(11, 11, 15, 0.6);
+}
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- Aplique: lettering em duas camadas com pesponto ---------- */
+.twill {
+  overflow: visible;
+}
+.twill text {
+  font-family: var(--f-display);
+  font-weight: 900;
+  text-anchor: middle;
+}
+.tw-under {
+  fill: var(--tw-under);
+  stroke: var(--tw-under);
+  stroke-width: var(--tw-w, 7);
+  stroke-linejoin: round;
+  paint-order: stroke;
+  transform: translate(var(--tw-dx, 2.5px), var(--tw-dy, 3.5px));
+}
+.tw-top {
+  fill: var(--tw-top);
+}
+.tw-stitch {
+  fill: none;
+  stroke: var(--tw-stitch);
+  stroke-width: 1.3;
+  stroke-dasharray: 3.2 3;
+  stroke-linejoin: round;
+}
+.twill--dark {
+  --tw-under: var(--purple);
+  --tw-top: #fff;
+  --tw-stitch: var(--ink);
+}
+.twill--purple {
+  --tw-under: var(--ink);
+  --tw-top: #fff;
+  --tw-stitch: var(--purple);
+}
+.twill--light {
+  --tw-under: var(--purple);
+  --tw-top: var(--ink);
+  --tw-stitch: #fff;
+}
+.twill--ink {
+  --tw-under: #fff;
+  --tw-top: var(--ink);
+  --tw-stitch: #fff;
+}
+/* só o contorno alinhavado: numerais "de fundo" */
+.twill--ghost {
+  --tw-under: transparent;
+  --tw-top: transparent;
+  --tw-stitch: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes tw-under-in {
+  from {
+    opacity: 0;
+    transform: translate(-7px, -9px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(var(--tw-dx, 2.5px), var(--tw-dy, 3.5px));
+  }
+}
+@keyframes tw-top-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+:root:not(.intro-wait) .twill--enter .tw-under {
+  animation: tw-under-in 0.7s var(--ease-out) backwards;
+  animation-delay: var(--d, 0s);
+}
+:root:not(.intro-wait) .twill--enter .tw-top,
+:root:not(.intro-wait) .twill--enter .tw-stitch {
+  animation: tw-top-in 0.5s var(--ease-out) backwards;
+  animation-delay: calc(var(--d, 0s) + 0.18s);
+}
+
+/* ---------- Revelar ao rolar (conteúdo visível por padrão sem JS) ---------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* modo "reduzir movimento" aplicado por classe (preferência do sistema ou ?review): tudo parado e visível */
+:root.rm *,
+:root.rm *::before,
+:root.rm *::after {
+  animation: none !important;
+  transition: none !important;
+}
+:root.rm .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}

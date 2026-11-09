@@ -1,0 +1,170 @@
+---
+/**
+ * Entrada do site: tela roxa, o logo se monta (d, o, e o u cai por último) e um círculo
+ * de tinta cresce do canto superior esquerdo revelando a página. Só aparece uma vez por sessão,
+ * nunca com "reduzir movimento" e nunca sem JavaScript (as classes vêm do script do <head>).
+ */
+---
+
+<div class="splash" data-splash aria-hidden="true">
+  <div class="splash__center">
+    <svg class="splash__mark" viewBox="42 38 368 179" focusable="false">
+      <path
+        class="sp sp-d"
+        fill="#0B0B0F"
+        fill-rule="evenodd"
+        d="M120 40H150V203H120V197.75A53 53 0 1 1 120 102.25ZM74 150A23 26 0 1 1 120 150A23 26 0 1 1 74 150Z"
+      ></path>
+      <path
+        class="sp sp-u"
+        fill="#FFFFFF"
+        d="M176 112V161A54 54 0 0 0 284 161V112H254V161A24 27 0 0 1 206 161V112Z"
+      ></path>
+      <path
+        class="sp sp-o"
+        fill="#0B0B0F"
+        fill-rule="evenodd"
+        d="M302 150A53 53 0 1 1 408 150A53 53 0 1 1 302 150ZM332 150A23 26 0 1 1 378 150A23 26 0 1 1 332 150Z"
+      ></path>
+    </svg>
+    <p class="splash__cap">Estamparia</p>
+    <span class="splash__bar"><i></i></span>
+  </div>
+</div>
+
+<style is:global>
+  @property --r {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0px;
+  }
+
+  .splash {
+    display: none;
+  }
+  html.splash-on {
+    overflow: hidden;
+  }
+  html.splash-on .splash {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    background-color: var(--purple);
+    background-image: radial-gradient(circle at 50% 50%, rgba(11, 11, 15, 0.14) 1.1px, transparent 1.7px);
+    background-size: 9px 9px;
+    --r: 0px;
+    -webkit-mask-image: radial-gradient(circle at 1.75rem 1.75rem, transparent var(--r), #000 calc(var(--r) + 1px));
+    mask-image: radial-gradient(circle at 1.75rem 1.75rem, transparent var(--r), #000 calc(var(--r) + 1px));
+  }
+  .splash__center {
+    display: grid;
+    justify-items: center;
+    gap: 1.1rem;
+  }
+  .splash__mark {
+    width: clamp(11rem, 26vw, 19rem);
+    height: auto;
+    overflow: visible;
+  }
+  .sp {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation-fill-mode: backwards;
+  }
+  .sp-d {
+    animation: sp-up 0.7s var(--ease-out) 0.2s backwards;
+  }
+  .sp-o {
+    animation: sp-up 0.7s var(--ease-out) 0.5s backwards;
+  }
+  .sp-u {
+    transform-origin: 50% 100%;
+    animation: sp-drop 1.15s linear 0.9s backwards;
+  }
+  @keyframes sp-up {
+    from {
+      opacity: 0;
+      transform: translateY(26px) scale(0.88);
+    }
+  }
+  @keyframes sp-drop {
+    0% {
+      opacity: 0;
+      transform: translateY(-150px);
+      animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4);
+    }
+    28% {
+      opacity: 1;
+    }
+    60% {
+      transform: translateY(0) scaleY(1);
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    70% {
+      transform: translateY(2px) scaleY(0.93);
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  .splash__cap {
+    margin: 0;
+    font: 800 clamp(1rem, 1.6vw, 1.35rem) / 1 var(--f-display);
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink);
+    animation: sp-fade 0.7s var(--ease-out) 1.5s backwards;
+  }
+  @keyframes sp-fade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+  .splash__bar {
+    position: relative;
+    display: block;
+    width: clamp(7rem, 16vw, 11rem);
+    border-top: 2px dashed rgba(11, 11, 15, 0.4);
+  }
+  .splash__bar i {
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    transform-origin: 0 50%;
+    animation: sp-bar 1.9s cubic-bezier(0.65, 0, 0.35, 1) 0.15s backwards;
+  }
+  @keyframes sp-bar {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  /* a virada: um círculo de tinta cresce do canto e a página aparece */
+  html.splash-on .splash.is-wiping {
+    animation: sp-wipe 1.25s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+  }
+  html.splash-on .splash.is-fast {
+    animation-duration: 0.45s;
+  }
+  html.splash-on .splash.is-fading {
+    animation: sp-fadeout 0.5s ease forwards;
+  }
+  @keyframes sp-wipe {
+    to {
+      --r: 175vmax;
+    }
+  }
+  @keyframes sp-fadeout {
+    to {
+      opacity: 0;
+    }
+  }
+</style>

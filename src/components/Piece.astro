@@ -1,0 +1,191 @@
+---
+/**
+ * Peças desenhadas à mão (SVG). `live` = estampa de aplique com nome e número controlada por script.
+ * Sem `live`, o conteúdo do slot é a estampa (por exemplo, o logo).
+ * As cores são ilustrativas: as opções reais de peça são combinadas no WhatsApp.
+ */
+import { layoutPrint } from '../scripts/layout';
+
+interface Props {
+  kind: 'camiseta' | 'ecobag' | 'bolsa' | 'copo';
+  live?: boolean;
+  color?: 'preta' | 'branca' | 'roxa';
+  name?: string;
+  num?: string;
+  class?: string;
+  marks?: boolean;
+  title?: string;
+}
+const {
+  kind,
+  live = false,
+  color = 'preta',
+  name = '',
+  num = '',
+  class: cls = '',
+  marks = live,
+  title = '',
+} = Astro.props;
+
+// centro e tamanho da área de estampa, em unidades do viewBox 400 x 420
+const AREA = {
+  camiseta: { cx: 200, cy: 214, w: 150, h: 190 },
+  ecobag: { cx: 200, cy: 266, w: 150, h: 176 },
+  bolsa: { cx: 200, cy: 314, w: 150, h: 108 },
+  copo: { cx: 200, cy: 246, w: 100, h: 160 },
+}[kind];
+
+const L = 16; // comprimento dos cantos de registro
+const x0 = AREA.cx - AREA.w / 2;
+const x1 = AREA.cx + AREA.w / 2;
+const y0 = AREA.cy - AREA.h / 2;
+const y1 = AREA.cy + AREA.h / 2;
+const corners = [
+  `M${x0} ${y0 + L}V${y0}H${x0 + L}`,
+  `M${x1 - L} ${y0}H${x1}V${y0 + L}`,
+  `M${x1} ${y1 - L}V${y1}H${x1 - L}`,
+  `M${x0 + L} ${y1}H${x0}V${y1 - L}`,
+].join('');
+
+const tone = color === 'branca' ? 'light' : color === 'roxa' ? 'purple' : 'dark';
+
+const lay = live
+  ? layoutPrint(name.toUpperCase(), num, { cx: AREA.cx, cy: AREA.cy, pw: AREA.w, ph: AREA.h })
+  : null;
+---
+
+<svg
+  class:list={['piece-svg', 'twill', `twill--${tone}`, cls]}
+  viewBox="0 0 400 420"
+  role={live ? undefined : 'img'}
+  aria-label={live ? undefined : title || kind}
+  aria-hidden={live ? 'true' : undefined}
+  data-kind={kind}
+  data-color={color}
+  focusable="false"
+>
+  {kind === 'camiseta' && (
+    <g class="body">
+      <path
+        d="M150 36 68 64 28 140l56 28 28-38v262h176V130l28 38 56-28-40-76-82-28c-18 26-82 26-100 0Z"
+        fill="var(--piece)"
+        stroke="var(--piece)"
+        stroke-width="8"
+        stroke-linejoin="round"
+      />
+      <path d="M152 38c18 28 78 28 96 0" fill="none" stroke="var(--piece-shade)" stroke-width="9" stroke-linecap="round" />
+      <path d="M112 130C108 100 90 80 68 64M288 130c4-30 22-50 44-66" fill="none" stroke="var(--piece-shade)" stroke-width="3" opacity=".7" />
+      <path d="M112 374h176" fill="none" stroke="var(--piece-shade)" stroke-width="3" stroke-dasharray="5 5" />
+    </g>
+  )}
+  {kind === 'ecobag' && (
+    <g class="body">
+      <path
+        d="M138 130V76c0-62 124-62 124 0v54"
+        fill="none"
+        stroke="var(--piece-shade)"
+        stroke-width="20"
+      />
+      <path
+        d="M138 130V76c0-62 124-62 124 0v54"
+        fill="none"
+        stroke="var(--piece-hi)"
+        stroke-width="2"
+        stroke-dasharray="4 4"
+      />
+      <rect x="82" y="126" width="236" height="270" rx="4" fill="var(--piece)" />
+      <rect x="82" y="126" width="236" height="26" fill="var(--piece-shade)" opacity=".5" />
+      <path d="M82 152h236M82 380h236" fill="none" stroke="var(--piece-shade)" stroke-width="3" stroke-dasharray="5 5" />
+    </g>
+  )}
+  {kind === 'bolsa' && (
+    <g class="body">
+      <path d="M126 180C126 52 274 52 274 180" fill="none" stroke="var(--piece-shade)" stroke-width="15" stroke-linecap="round" />
+      <path
+        d="M66 172h268l18 198q2 26-22 26H70q-24 0-22-26Z"
+        fill="var(--piece)"
+        stroke="var(--piece)"
+        stroke-width="6"
+        stroke-linejoin="round"
+      />
+      <path d="M58 226h284" fill="none" stroke="var(--piece-shade)" stroke-width="3" stroke-dasharray="5 5" />
+      <circle cx="200" cy="228" r="9" fill="var(--piece-shade)" />
+    </g>
+  )}
+  {kind === 'copo' && (
+    <g class="body">
+      <path
+        d="M108 98h184l-22 284q-2 18-18 18H148q-16 0-18-18Z"
+        fill="var(--piece)"
+        stroke="var(--piece)"
+        stroke-width="6"
+        stroke-linejoin="round"
+      />
+      <rect x="102" y="84" width="196" height="22" rx="8" fill="var(--piece-shade)" />
+      <path d="M132 118 150 380" fill="none" stroke="var(--piece-hi)" stroke-width="12" stroke-linecap="round" />
+    </g>
+  )}
+
+  {marks && (
+    <path class="reg" d={corners} fill="none" stroke="var(--purple-hi)" stroke-width="3" stroke-linecap="square" />
+  )}
+
+  {live ? (
+    <g
+      class="print is-ghost"
+      data-print
+      data-cx={AREA.cx}
+      data-cy={AREA.cy}
+      data-pw={AREA.w}
+      data-ph={AREA.h}
+    >
+      <g data-line="name" style={`--tw-w:${(lay!.name.fs * 0.1).toFixed(1)}px;--tw-dx:${(lay!.name.fs * 0.04).toFixed(1)}px;--tw-dy:${(lay!.name.fs * 0.055).toFixed(1)}px`}>
+        <text class="tw-under" x={lay!.name.x} y={lay!.name.y} font-size={lay!.name.fs}>{name.toUpperCase()}</text>
+        <text class="tw-top" x={lay!.name.x} y={lay!.name.y} font-size={lay!.name.fs}>{name.toUpperCase()}</text>
+        <text class="tw-stitch" x={lay!.name.x} y={lay!.name.y} font-size={lay!.name.fs}>{name.toUpperCase()}</text>
+      </g>
+      <g data-line="num" style={`--tw-w:${(lay!.num.fs * 0.08).toFixed(1)}px;--tw-dx:${(lay!.num.fs * 0.03).toFixed(1)}px;--tw-dy:${(lay!.num.fs * 0.045).toFixed(1)}px`}>
+        <text class="tw-under" x={lay!.num.x} y={lay!.num.y} font-size={lay!.num.fs}>{num}</text>
+        <text class="tw-top" x={lay!.num.x} y={lay!.num.y} font-size={lay!.num.fs}>{num}</text>
+        <text class="tw-stitch" x={lay!.num.x} y={lay!.num.y} font-size={lay!.num.fs}>{num}</text>
+      </g>
+    </g>
+  ) : (
+    <g class="print" transform={`translate(${AREA.cx} ${AREA.cy})`}>
+      <slot />
+    </g>
+  )}
+</svg>
+
+<style is:global>
+  .piece-svg {
+    --piece: #17151f;
+    --piece-shade: #0b0b0f;
+    --piece-hi: rgba(255, 255, 255, 0.14);
+  }
+  .piece-svg[data-color='preta'] {
+    --piece: #2b2638;
+    --piece-shade: #15121d;
+    --piece-hi: rgba(255, 255, 255, 0.22);
+  }
+  .piece-svg[data-color='branca'] {
+    --piece: #f4f2fb;
+    --piece-shade: #cfc9e2;
+    --piece-hi: rgba(11, 11, 15, 0.18);
+  }
+  .piece-svg[data-color='roxa'] {
+    --piece: #7a3cff;
+    --piece-shade: #5a22d4;
+    --piece-hi: rgba(255, 255, 255, 0.3);
+  }
+  .piece-svg .print {
+    transition: opacity 0.3s var(--ease-out);
+  }
+  .piece-svg .print.is-ghost {
+    opacity: 0.5;
+  }
+  .piece-svg .body path,
+  .piece-svg .body rect {
+    transition: fill 0.35s var(--ease-out), stroke 0.35s var(--ease-out);
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+interface Props {
+  variant?: 'color' | 'reversed';
+  class?: string;
+  drop?: boolean;
+  label?: string;
+}
+const { variant = 'reversed', class: cls = '', drop = false, label = 'DUO' } = Astro.props;
+
+const P = {
+  color: {
+    vb: '42 38 368 179',
+    d: 'M120 40H150V203H120V197.75A53 53 0 1 1 120 102.25ZM74 150A23 26 0 1 1 120 150A23 26 0 1 1 74 150Z',
+    u: 'M176 112V161A54 54 0 0 0 284 161V112H254V161A24 27 0 0 1 206 161V112Z',
+    o: 'M302 150A53 53 0 1 1 408 150A53 53 0 1 1 302 150ZM332 150A23 26 0 1 1 378 150A23 26 0 1 1 332 150Z',
+    fill: '#0B0B0F',
+    ufill: '#7A3CFF',
+  },
+  reversed: {
+    vb: '42 38 370 179',
+    d: 'M122 40H150V203H122V196.73A53 53 0 1 1 122 103.27ZM72 150A25 28 0 1 1 122 150A25 28 0 1 1 72 150Z',
+    u: 'M177 112V161A54 54 0 0 0 285 161V112H257V161A26 29 0 0 1 205 161V112Z',
+    o: 'M304 150A53 53 0 1 1 410 150A53 53 0 1 1 304 150ZM332 150A25 28 0 1 1 382 150A25 28 0 1 1 332 150Z',
+    fill: '#FFFFFF',
+    ufill: '#8F5CFF',
+  },
+}[variant];
+---
+
+<svg
+  class:list={['wordmark', cls, { 'wordmark--drop': drop }]}
+  viewBox={P.vb}
+  role="img"
+  aria-label={label}
+  focusable="false"
+>
+  <path fill={P.fill} fill-rule="evenodd" d={P.d}></path>
+  <path class="wm-u" fill={P.ufill} d={P.u}></path>
+  <path fill={P.fill} fill-rule="evenodd" d={P.o}></path>
+</svg>
+
+<style>
+  .wordmark {
+    height: 2.4rem;
+    width: auto;
+    overflow: visible;
+  }
+  .wm-u {
+    transform-box: fill-box;
+  }
+  :global(:root:not(.intro-wait)) .wordmark--drop .wm-u {
+    transform-origin: 50% 100%;
+    animation: wm-drop 1s linear 0.3s backwards;
+  }
+  @keyframes wm-drop {
+    0% {
+      transform: translateY(-46px);
+      opacity: 0;
+      animation-timing-function: cubic-bezier(0.55, 0, 0.85, 0.4);
+    }
+    28% {
+      opacity: 1;
+    }
+    60% {
+      transform: translateY(0) scaleY(1);
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    70% {
+      transform: translateY(1px) scaleY(0.94);
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    100% {
+      transform: none;
+    }
+  }
+</style>

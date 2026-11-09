@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.astro/
+.vercel/
+.env
+.env.*
+.DS_Store
+# arquivos de trabalho do Impeccable que não precisam ir para o repositório
+.impeccable/questions/
+.impeccable/review/
+.impeccable/decision-payload.json
+.impeccable/brief-body.md
+.impeccable/*.py
+.impeccable/*.mjs
+.impeccable/*.log
+.impeccable/wait-*.txt
+.impeccable/hook.cache.json

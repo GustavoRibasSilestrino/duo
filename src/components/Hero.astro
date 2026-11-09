@@ -1,0 +1,434 @@
+---
+import Twill from './Twill.astro';
+import Piece from './Piece.astro';
+import Icon from './Icon.astro';
+import { products } from '../config/site';
+
+const kinds = ['camiseta', 'ecobag', 'bolsa', 'copo'] as const;
+const colors = [
+  { key: 'preta', label: 'Preta', dot: '#1a1824' },
+  { key: 'branca', label: 'Branca', dot: '#f4f2fb' },
+  { key: 'roxa', label: 'Roxa', dot: '#7a3cff' },
+];
+---
+
+<section class="hero ground-ink" id="topo" aria-labelledby="hero-title" data-preview>
+  <div class="container hero__grid">
+    <h1 class="hero__title" id="hero-title">
+      <span class="sr-only">2 corações, 2 objetivos, 1 propósito</span>
+      <span class="slogan" aria-hidden="true">
+        <span class="slogan__line">
+          <Twill class="slogan__num" text="2" tone="dark" enter delay="0.05s" countTo="2" />
+          <span class="slogan__word">corações,</span>
+        </span>
+        <span class="slogan__line">
+          <Twill class="slogan__num" text="2" tone="dark" enter delay="0.2s" countTo="2" />
+          <span class="slogan__word">objetivos,</span>
+        </span>
+        <span class="slogan__line">
+          <Twill class="slogan__num" text="1" tone="dark" enter delay="0.35s" countTo="1" />
+          <span class="slogan__word">propósito.</span>
+        </span>
+      </span>
+    </h1>
+
+    <div class="hero__lead">
+      <p class="lead">
+        A gente estampa camisetas, ecobags, bolsas e copos do seu jeito. Escreva um nome e um
+        número, veja na peça e peça o orçamento pelo WhatsApp.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#pedido" data-wa-link>
+          <Icon name="chat" />
+          <span>Pedir no WhatsApp</span>
+        </a>
+        <a class="btn btn--ghost" href="#pecas">
+          <span>Ver as peças</span>
+          <Icon name="arrow-down" />
+        </a>
+      </div>
+      <p class="note hero__sign">Feito pela Yasmin e pelo Gabriel.</p>
+      <div class="wa-status" data-wa-status>
+        <p role="status" data-wa-status-text></p>
+        <button class="btn btn--ghost btn--small" type="button" data-copy-msg>
+          <Icon name="copy" />
+          <span>Copiar mensagem</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="stage__view" data-view data-color="preta">
+        <span class="stage__disc" aria-hidden="true"></span>
+        {kinds.map((k, i) => (
+          <div class:list={['piece-wrap', { 'is-active': i === 0 }]} data-kind={k}>
+            <Piece kind={k} live color="preta" name="Seu nome" num="10" />
+          </div>
+        ))}
+      </div>
+      <p class="sr-only" role="status" data-preview-live></p>
+
+      <form class="controls" novalidate aria-label="Monte a sua peça" onsubmit="return false">
+        <div class="fields">
+          <div class="field field--name">
+            <label for="pv-name">Nome</label>
+            <input
+              id="pv-name"
+              name="pv-name"
+              type="text"
+              maxlength="14"
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              placeholder="Digite um nome"
+            />
+          </div>
+          <div class="field field--num">
+            <label for="pv-num">Número</label>
+            <input
+              id="pv-num"
+              name="pv-num"
+              type="text"
+              maxlength="4"
+              autocomplete="off"
+              inputmode="text"
+              spellcheck="false"
+              placeholder="10"
+            />
+          </div>
+        </div>
+        <fieldset class="seg">
+          <legend>Peça</legend>
+          {products.map((p, i) => (
+            <span class="seg__opt">
+              <input type="radio" name="pv-piece" id={`pv-piece-${p.key}`} value={p.key} checked={i === 0} />
+              <label for={`pv-piece-${p.key}`}>{p.label}</label>
+            </span>
+          ))}
+        </fieldset>
+
+        <fieldset class="seg">
+          <legend>Cor da peça (de exemplo)</legend>
+          {colors.map((c, i) => (
+            <span class="seg__opt">
+              <input type="radio" name="pv-color" id={`pv-color-${c.key}`} value={c.key} checked={i === 0} />
+              <label for={`pv-color-${c.key}`}>
+                <i class="dot" style={`--dot:${c.dot}`}></i>{c.label}
+              </label>
+            </span>
+          ))}
+        </fieldset>
+
+        <p class="hint">As cores são ilustrativas. As opções de peça e cor a gente combina com você no WhatsApp.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding-block: clamp(1rem, 2.4vw, 2rem) clamp(3.5rem, 7vw, 6rem);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-areas:
+      'title stage'
+      'lead stage';
+    column-gap: clamp(1.5rem, 4vw, 4rem);
+    row-gap: 1.75rem;
+    align-items: start;
+  }
+  .hero__title {
+    grid-area: title;
+    align-self: end;
+  }
+  .hero__lead {
+    grid-area: lead;
+    display: grid;
+    gap: 1.5rem;
+    align-self: start;
+  }
+  .stage {
+    grid-area: stage;
+    align-self: center;
+    display: grid;
+    gap: 1.1rem;
+    justify-items: center;
+  }
+
+  /* slogan: numerais de uniforme + palavras */
+  .slogan {
+    display: grid;
+    gap: clamp(0.5rem, 1.1vw, 0.9rem);
+  }
+  .slogan__line {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.5rem, 1.4vw, 1rem);
+  }
+  .slogan__line :global(.slogan__num) {
+    height: clamp(4.4rem, 8vw, 6.4rem);
+    width: auto;
+    flex: none;
+  }
+  .slogan__word {
+    font: 900 clamp(2.5rem, 5.1vw, 4.6rem) / 0.86 var(--f-display);
+    letter-spacing: 0.012em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  :global(:root:not(.intro-wait)) .hero__lead {
+    animation: rise 0.9s var(--ease-out) 0.55s backwards;
+  }
+  :global(:root:not(.intro-wait)) .controls {
+    animation: rise 0.9s var(--ease-out) 0.75s backwards;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+  .hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  /* o aviso fica na árvore de acessibilidade desde o início (para o leitor de tela anunciar) */
+  .wa-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .wa-status.is-on {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    display: grid;
+    gap: 0.75rem;
+    padding: 1rem 1.1rem;
+    border: 1.5px dashed var(--line-dark);
+    border-radius: 4px;
+    font-size: 0.97rem;
+    max-width: 34rem;
+  }
+  .hero__sign {
+    font-size: 1.5rem;
+  }
+  .btn--small {
+    min-height: 2.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.97rem;
+    justify-self: start;
+  }
+
+  /* palco com a peça */
+  .stage__view {
+    position: relative;
+    width: min(100%, 27.5rem, 51svh);
+    aspect-ratio: 400 / 420;
+  }
+  /* o disco da marca por trás da peça: a camisa preta precisa de um chão que a destaque */
+  .stage__disc {
+    position: absolute;
+    left: 5%;
+    top: 3%;
+    width: 90%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--purple);
+    background-image: radial-gradient(circle at 50% 50%, rgba(11, 11, 15, 0.14) 1.1px, transparent 1.7px);
+    background-size: 9px 9px;
+    transition: background-color 0.5s var(--ease-out);
+  }
+  :global(:root:not(.intro-wait)) .stage__disc {
+    animation: disc-in 1s var(--ease-out) 0.1s backwards;
+  }
+  .stage__view[data-color='roxa'] .stage__disc {
+    background-color: var(--ink-3);
+  }
+  @keyframes disc-in {
+    from {
+      transform: scale(0.82);
+      opacity: 0;
+    }
+  }
+  .piece-wrap {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+    transition:
+      opacity 0.4s var(--ease-out),
+      transform 0.55s var(--ease-out);
+    pointer-events: none;
+  }
+  .piece-wrap.is-active {
+    opacity: 1;
+    transform: none;
+  }
+  .piece-wrap :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .controls {
+    display: grid;
+    gap: 0.85rem;
+    width: min(100%, 33rem);
+  }
+  .seg {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .seg legend {
+    float: left;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0.45rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--on-dark-soft);
+  }
+  .seg__opt {
+    position: relative;
+  }
+  .seg__opt input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+  .seg__opt label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.55rem 1rem;
+    border: 1.5px dashed var(--line-dark);
+    border-radius: 4px;
+    font-weight: 700;
+    color: var(--on-dark);
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+  .seg__opt input:hover + label {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .seg__opt input:checked + label {
+    background: #fff;
+    color: var(--ink);
+    border: 1.5px solid #fff;
+  }
+  .seg__opt input:focus-visible + label {
+    outline: 3px solid #fff;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px var(--purple);
+  }
+  .dot {
+    width: 0.95rem;
+    height: 0.95rem;
+    border-radius: 50%;
+    background: var(--dot);
+    box-shadow: inset 0 0 0 1.5px rgba(128, 128, 140, 0.65);
+  }
+
+  .fields {
+    display: grid;
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+  .field label {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--on-dark-soft);
+  }
+  .field input {
+    width: 100%;
+    min-height: 3.1rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--ink-2);
+    color: #fff;
+    border: 1.5px solid var(--line-dark);
+    border-radius: 4px;
+    font: 700 1.125rem/1.2 var(--f-text);
+    text-transform: uppercase;
+    transition: border-color 0.2s;
+  }
+  .field input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: none;
+    font-weight: 500;
+  }
+  .field input:hover {
+    border-color: rgba(255, 255, 255, 0.45);
+  }
+  .field input:focus {
+    border-color: var(--purple-hi);
+  }
+  .hint {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--on-dark-soft);
+    max-width: 30rem;
+  }
+
+  @media (max-width: 62rem) {
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas:
+        'title'
+        'stage'
+        'lead';
+      row-gap: 1.5rem;
+    }
+    .hero__title {
+      align-self: start;
+    }
+    .slogan {
+      gap: 0.15rem;
+    }
+    .slogan__line :global(.slogan__num) {
+      height: clamp(3.4rem, 15vw, 5.4rem);
+    }
+    .slogan__word {
+      font-size: clamp(2.1rem, 9.5vw, 3.7rem);
+    }
+    .stage__view {
+      width: min(100%, 26rem);
+    }
+  }
+  @media (max-width: 30rem) {
+    .seg {
+      gap: 0.4rem;
+    }
+    .seg__opt label {
+      padding-inline: 0.75rem;
+    }
+  }
+</style>

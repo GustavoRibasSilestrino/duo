@@ -1,0 +1,205 @@
+---
+import Wordmark from './Wordmark.astro';
+import Icon from './Icon.astro';
+
+const links = [
+  { href: '#pecas', label: 'Peças' },
+  { href: '#historia', label: 'Slogan' },
+  { href: '#como-funciona', label: 'Como funciona' },
+  { href: '#quem-faz', label: 'Quem faz' },
+  { href: '#pedido', label: 'Pedir' },
+];
+---
+
+<header class="site-header" data-header>
+  <div class="site-header__bar">
+    <a class="site-header__brand" href="#topo" aria-label="DUO Estamparia, início">
+      <Wordmark variant="reversed" drop />
+    </a>
+
+    <nav class="site-header__nav" id="menu" aria-label="Principal" data-menu>
+      <ul>
+        {links.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="btn btn--primary site-header__cta" href="#pedido" data-wa-link>
+        <Icon name="chat" />
+        <span>Pedir orçamento</span>
+      </a>
+      <button
+        class="site-header__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="menu"
+        data-menu-toggle
+      >
+        <span class="sr-only">Abrir menu</span>
+        <Icon name="menu" class="i-open" />
+        <Icon name="close" class="i-close" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--ink);
+    transition: box-shadow 0.3s var(--ease-out);
+  }
+  .site-header.is-stuck {
+    box-shadow: 0 1px 0 var(--line-dark);
+  }
+  .site-header__bar {
+    width: min(100% - 2 * var(--gutter), var(--maxw));
+    min-height: var(--header-h);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .site-header__brand {
+    display: inline-flex;
+    padding: 0.4rem 0.25rem;
+    margin-left: -0.25rem;
+  }
+  .site-header__nav {
+    margin-left: auto;
+  }
+  .site-header__nav ul {
+    display: flex;
+    gap: clamp(1rem, 2.4vw, 2rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-header__nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    font: 700 1.2rem/1 var(--f-display);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--on-dark);
+    /* pesponto que costura por baixo no hover */
+    background-image: repeating-linear-gradient(90deg, var(--purple-hi) 0 5px, transparent 5px 9px);
+    background-repeat: no-repeat;
+    background-position: 0 calc(100% - 0.5rem);
+    background-size: 0 2px;
+    transition:
+      background-size 0.35s var(--ease-out),
+      color 0.2s;
+  }
+  .site-header__nav a:hover {
+    color: #fff;
+    background-size: 100% 2px;
+  }
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .site-header__cta {
+    min-height: 2.9rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+  .site-header__toggle {
+    display: none;
+    width: 2.9rem;
+    height: 2.9rem;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: #fff;
+    border: 1.5px dashed var(--line-dark);
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .site-header__toggle :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .site-header__toggle :global(.i-close),
+  .site-header__toggle[aria-expanded='true'] :global(.i-open) {
+    display: none;
+  }
+  .site-header__toggle[aria-expanded='true'] :global(.i-close) {
+    display: block;
+  }
+
+  @media (max-width: 62rem) {
+    .site-header__toggle {
+      display: inline-flex;
+    }
+    .site-header__actions {
+      margin-left: auto;
+    }
+    :global(.js) .site-header__nav {
+      position: absolute;
+      inset: 100% 0 auto 0;
+      margin: 0;
+      padding: 0.5rem var(--gutter) 1.5rem;
+      background: var(--ink);
+      box-shadow: 0 1px 0 var(--line-dark);
+      display: none;
+    }
+    :global(.js) .site-header__nav.is-open {
+      display: block;
+    }
+    .site-header__nav ul {
+      flex-direction: column;
+      gap: 0;
+    }
+    .site-header__nav a {
+      width: 100%;
+      min-height: 3.25rem;
+      font-size: 1.6rem;
+      border-bottom: 1.5px dashed var(--line-dark);
+      background-image: none;
+    }
+    /* sem JS o menu fica à mostra, em linha */
+    :global(html:not(.js)) .site-header__nav {
+      order: 3;
+      width: 100%;
+    }
+    :global(html:not(.js)) .site-header__bar {
+      flex-wrap: wrap;
+    }
+    :global(html:not(.js)) .site-header__nav ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.25rem;
+    }
+    :global(html:not(.js)) .site-header__nav a {
+      width: auto;
+      min-height: 2.5rem;
+      font-size: 1.1rem;
+      border: 0;
+    }
+  }
+  @media (max-width: 30rem) {
+    .site-header__cta span {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+    }
+    .site-header__cta {
+      width: 2.9rem;
+      padding: 0;
+    }
+    .site-header__cta::before {
+      inset: 4px;
+    }
+  }
+</style>

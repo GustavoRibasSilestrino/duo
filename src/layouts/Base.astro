@@ -1,0 +1,94 @@
+---
+import '@fontsource-variable/big-shoulders-display';
+import '@fontsource-variable/figtree';
+import '@fontsource/mansalva/latin-400.css';
+import '@fontsource/mansalva/latin-ext-400.css';
+import '../styles/global.css';
+import Splash from '../components/Splash.astro';
+import { site, whatsappDigits, instagramUrl } from '../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = `${site.name} | ${site.slogan}`,
+  description = site.description,
+  noindex = false,
+} = Astro.props;
+
+const base = site.url.replace(/\/$/, '');
+const abs = (p: string) => (base ? `${base}${p}` : p);
+const ig = instagramUrl();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  slogan: site.slogan,
+  description: site.description,
+  ...(base ? { url: base, logo: `${base}/icon-512.png` } : {}),
+  ...(ig ? { sameAs: [ig] } : {}),
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0B0B0F" />
+    <meta name="color-scheme" content="dark light" />
+    {noindex && <meta name="robots" content="noindex" />}
+    {base && <link rel="canonical" href={abs(Astro.url.pathname)} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={abs('/og.png')} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="DUO: duas letras pretas e um u roxo que cai entre elas" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        var q = location.search;
+        // ?review mostra a página estática e inteira (para revisão e capturas); ?nointro pula a entrada
+        var review = /[?&]review(&|$)/.test(q);
+        var rm = matchMedia('(prefers-reduced-motion: reduce)').matches || review;
+        if (rm) d.classList.add('rm');
+        var seen = false;
+        try { seen = sessionStorage.getItem('duo-intro') === '1'; } catch (e) {}
+        if (!rm && !seen && !/[?&]nointro(&|$)/.test(q)) {
+          d.classList.add('intro-wait', 'splash-on');
+          // rede de segurança: se o script principal não rodar, a entrada não prende a página
+          setTimeout(function () { d.classList.remove('splash-on', 'intro-wait'); }, 7000);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <Splash />
+    <script
+      type="application/json"
+      id="duo-config"
+      set:html={JSON.stringify({ wa: whatsappDigits(), ig, slogan: site.slogan })}
+    />
+    <slot />
+  </body>
+</html>

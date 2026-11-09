@@ -1,0 +1,49 @@
+---
+/**
+ * Lettering de aplique: camada de baixo (tinta 1), camada de cima (tinta 2) e pesponto tracejado.
+ * Texto curto (numerais e iniciais). O texto fica acessível pelo aria-label.
+ */
+interface Props {
+  text: string;
+  decorative?: boolean;
+  countTo?: string;
+  tone?: 'dark' | 'purple' | 'light' | 'ink' | 'ghost';
+  label?: string;
+  class?: string;
+  delay?: string;
+  enter?: boolean;
+  vb?: string;
+  fs?: number;
+  y?: number;
+  x?: number;
+}
+const {
+  text,
+  decorative = false,
+  countTo,
+  tone = 'dark',
+  label = text,
+  class: cls = '',
+  delay = '0s',
+  enter = false,
+  vb = '0 0 92 112',
+  fs = 140,
+  y = 104,
+  x = 46,
+} = Astro.props;
+---
+
+<svg
+  class:list={['twill', `twill--${tone}`, cls, { 'twill--enter': enter }]}
+  viewBox={vb}
+  role={decorative ? undefined : 'img'}
+  aria-label={decorative ? undefined : label}
+  aria-hidden={decorative ? 'true' : undefined}
+  data-count={countTo}
+  style={`--d:${delay}`}
+  focusable="false"
+>
+  <text class="tw-under" x={x} y={y} font-size={fs}>{text}</text>
+  <text class="tw-top" x={x} y={y} font-size={fs}>{text}</text>
+  <text class="tw-stitch" x={x} y={y} font-size={fs}>{text}</text>
+</svg>

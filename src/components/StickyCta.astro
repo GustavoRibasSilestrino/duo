@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="sticky-cta" data-sticky-cta aria-hidden="true">
+  <a class="btn btn--primary" href="#pedido" data-wa-link tabindex="-1">
+    <Icon name="chat" />
+    <span>Pedir no WhatsApp</span>
+  </a>
+</div>
+
+<style>
+  .sticky-cta {
+    display: none;
+  }
+  @media (max-width: 52rem) {
+    .sticky-cta {
+      display: block;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+      padding: 0.75rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom));
+      background: var(--ink);
+      box-shadow: 0 -1px 0 var(--line-dark);
+      transform: translateY(110%);
+      transition: transform 0.45s var(--ease-out);
+    }
+    .sticky-cta.is-visible {
+      transform: none;
+    }
+    .sticky-cta .btn {
+      width: 100%;
+    }
+  }
+</style>
