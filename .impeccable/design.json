@@ -1,0 +1,872 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T12:00:00.000Z",
+  "title": "Design System: DUO Personalizados",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Preto jersey",
+        "canonical": "#0b0b0f",
+        "tonalRamp": [
+          "#050508",
+          "#0b0b0f",
+          "#14121c",
+          "#1e1a2b",
+          "#2d2840",
+          "#4a4560",
+          "#8a85a0",
+          "#c9c5d8"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Preto 2",
+        "canonical": "#14121c",
+        "tonalRamp": [
+          "#08070c",
+          "#0e0d14",
+          "#14121c",
+          "#1b1826",
+          "#262236",
+          "#3a3550",
+          "#6b6685",
+          "#b0abc4"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Preto 3",
+        "canonical": "#1e1a2b",
+        "tonalRamp": [
+          "#0e0c15",
+          "#16131f",
+          "#1e1a2b",
+          "#2a2540",
+          "#383256",
+          "#53496f",
+          "#8b82a8",
+          "#c4bdd8"
+        ]
+      },
+      "purple": {
+        "role": "primary",
+        "displayName": "Roxo elétrico",
+        "canonical": "#7a3cff",
+        "tonalRamp": [
+          "#1c0a4d",
+          "#3a1590",
+          "#5a25d0",
+          "#7a3cff",
+          "#9560ff",
+          "#b28cff",
+          "#d0b8ff",
+          "#ece2ff"
+        ]
+      },
+      "purple-deep": {
+        "role": "primary",
+        "displayName": "Roxo profundo",
+        "canonical": "#6a2bef",
+        "tonalRamp": [
+          "#190844",
+          "#33127f",
+          "#4e1fbd",
+          "#6a2bef",
+          "#8650f5",
+          "#a67df8",
+          "#c9b0fb",
+          "#e9defe"
+        ]
+      },
+      "purple-hi": {
+        "role": "primary",
+        "displayName": "Roxo sobre escuro",
+        "canonical": "#8f5cff",
+        "tonalRamp": [
+          "#1f0d55",
+          "#3d1a9a",
+          "#6038d8",
+          "#8f5cff",
+          "#a47dff",
+          "#bea0ff",
+          "#d8c7ff",
+          "#f0eaff"
+        ]
+      },
+      "lilac": {
+        "role": "neutral",
+        "displayName": "Lilás",
+        "canonical": "#efe9ff",
+        "tonalRamp": [
+          "#2a2340",
+          "#4d4377",
+          "#7a6db5",
+          "#a89cd8",
+          "#c8bff0",
+          "#dcd5f8",
+          "#efe9ff",
+          "#f8f5ff"
+        ]
+      },
+      "note": {
+        "role": "secondary",
+        "displayName": "Bilhete",
+        "canonical": "#cdbbff",
+        "tonalRamp": [
+          "#2d2150",
+          "#4d3a8c",
+          "#7459c4",
+          "#9d84e8",
+          "#b7a0ff",
+          "#cdbbff",
+          "#e0d4ff",
+          "#f3eeff"
+        ]
+      },
+      "day": {
+        "role": "neutral",
+        "displayName": "Dia",
+        "canonical": "#f7f4ff",
+        "tonalRamp": [
+          "#1a1626",
+          "#4a4560",
+          "#7a7595",
+          "#a9a5c0",
+          "#cdc9de",
+          "#e4e1f0",
+          "#f7f4ff",
+          "#fdfcff"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Branco",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#3a3a3f",
+          "#68686e",
+          "#939398",
+          "#b8b8bd",
+          "#d4d4d8",
+          "#e8e8ea",
+          "#f5f5f6",
+          "#ffffff"
+        ]
+      },
+      "on-day": {
+        "role": "neutral",
+        "displayName": "Texto sobre dia",
+        "canonical": "#1a1626",
+        "tonalRamp": [
+          "#0b0911",
+          "#1a1626",
+          "#2b2640",
+          "#4a4560",
+          "#6c6785",
+          "#9591ab",
+          "#c2bfd2",
+          "#e6e4ee"
+        ]
+      },
+      "on-day-soft": {
+        "role": "neutral",
+        "displayName": "Suave sobre dia",
+        "canonical": "#4a4560",
+        "tonalRamp": [
+          "#1a1626",
+          "#2f2a42",
+          "#4a4560",
+          "#645f7b",
+          "#847f99",
+          "#a8a4ba",
+          "#cbc8d8",
+          "#e8e6ef"
+        ]
+      },
+      "error": {
+        "role": "tertiary",
+        "displayName": "Erro",
+        "canonical": "#a4161a",
+        "tonalRamp": [
+          "#3d0709",
+          "#6b0d10",
+          "#a4161a",
+          "#c93c3f",
+          "#df6a6c",
+          "#eb9a9b",
+          "#f5c6c7",
+          "#fbe8e8"
+        ]
+      },
+      "on-dark": {
+        "role": "neutral",
+        "displayName": "Texto sobre escuro",
+        "canonical": "rgba(255, 255, 255, 0.84)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "on-dark-soft": {
+        "role": "neutral",
+        "displayName": "Suave sobre escuro",
+        "canonical": "rgba(255, 255, 255, 0.66)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "line-dark": {
+        "role": "neutral",
+        "displayName": "Linha escura",
+        "canonical": "rgba(255, 255, 255, 0.18)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "line-day": {
+        "role": "neutral",
+        "displayName": "Linha dia",
+        "canonical": "rgba(11, 11, 15, 0.2)",
+        "tonalRamp": [
+          "rgba(11, 11, 15, 0.05)",
+          "rgba(11, 11, 15, 0.1)",
+          "rgba(11, 11, 15, 0.18)",
+          "rgba(11, 11, 15, 0.3)",
+          "rgba(11, 11, 15, 0.45)",
+          "rgba(11, 11, 15, 0.6)",
+          "rgba(11, 11, 15, 0.84)",
+          "rgba(11, 11, 15, 1)"
+        ]
+      },
+      "stitch-primary": {
+        "role": "neutral",
+        "displayName": "Costura do primário",
+        "canonical": "rgba(255, 255, 255, 0.55)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "stitch-ink": {
+        "role": "neutral",
+        "displayName": "Costura do tinta",
+        "canonical": "rgba(255, 255, 255, 0.45)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "stitch-ghost": {
+        "role": "neutral",
+        "displayName": "Aplique fantasma",
+        "canonical": "rgba(255, 255, 255, 0.5)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "hover-outline": {
+        "role": "neutral",
+        "displayName": "Contorno do fantasma",
+        "canonical": "rgba(255, 255, 255, 0.45)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "hover-fill": {
+        "role": "neutral",
+        "displayName": "Preenchimento no hover",
+        "canonical": "rgba(255, 255, 255, 0.1)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "placeholder-dark": {
+        "role": "neutral",
+        "displayName": "Placeholder escuro",
+        "canonical": "rgba(255, 255, 255, 0.5)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "mesh-dot": {
+        "role": "neutral",
+        "displayName": "Furinhos do jersey",
+        "canonical": "rgba(255, 255, 255, 0.045)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "mesh-glow": {
+        "role": "primary",
+        "displayName": "Brilho dos furinhos",
+        "canonical": "rgba(167, 139, 255, 0.95)",
+        "tonalRamp": [
+          "rgba(167, 139, 255, 0.05)",
+          "rgba(167, 139, 255, 0.1)",
+          "rgba(167, 139, 255, 0.18)",
+          "rgba(167, 139, 255, 0.3)",
+          "rgba(167, 139, 255, 0.45)",
+          "rgba(167, 139, 255, 0.6)",
+          "rgba(167, 139, 255, 0.84)",
+          "rgba(167, 139, 255, 1)"
+        ]
+      },
+      "disc-dot": {
+        "role": "neutral",
+        "displayName": "Furinhos do disco",
+        "canonical": "rgba(11, 11, 15, 0.14)",
+        "tonalRamp": [
+          "rgba(11, 11, 15, 0.05)",
+          "rgba(11, 11, 15, 0.1)",
+          "rgba(11, 11, 15, 0.18)",
+          "rgba(11, 11, 15, 0.3)",
+          "rgba(11, 11, 15, 0.45)",
+          "rgba(11, 11, 15, 0.6)",
+          "rgba(11, 11, 15, 0.84)",
+          "rgba(11, 11, 15, 1)"
+        ]
+      },
+      "cursor-hover": {
+        "role": "neutral",
+        "displayName": "Anel do cursor sobre link",
+        "canonical": "rgba(255, 255, 255, 0.16)",
+        "tonalRamp": [
+          "rgba(255, 255, 255, 0.05)",
+          "rgba(255, 255, 255, 0.1)",
+          "rgba(255, 255, 255, 0.18)",
+          "rgba(255, 255, 255, 0.3)",
+          "rgba(255, 255, 255, 0.45)",
+          "rgba(255, 255, 255, 0.6)",
+          "rgba(255, 255, 255, 0.84)",
+          "rgba(255, 255, 255, 1)"
+        ]
+      },
+      "shadow-purple": {
+        "role": "primary",
+        "displayName": "Sombra roxa",
+        "canonical": "rgba(122, 60, 255, 0.65)",
+        "tonalRamp": [
+          "rgba(122, 60, 255, 0.05)",
+          "rgba(122, 60, 255, 0.1)",
+          "rgba(122, 60, 255, 0.18)",
+          "rgba(122, 60, 255, 0.3)",
+          "rgba(122, 60, 255, 0.45)",
+          "rgba(122, 60, 255, 0.6)",
+          "rgba(122, 60, 255, 0.84)",
+          "rgba(122, 60, 255, 1)"
+        ]
+      },
+      "shadow-ink": {
+        "role": "neutral",
+        "displayName": "Sombra tinta",
+        "canonical": "rgba(11, 11, 15, 0.6)",
+        "tonalRamp": [
+          "rgba(11, 11, 15, 0.05)",
+          "rgba(11, 11, 15, 0.1)",
+          "rgba(11, 11, 15, 0.18)",
+          "rgba(11, 11, 15, 0.3)",
+          "rgba(11, 11, 15, 0.45)",
+          "rgba(11, 11, 15, 0.6)",
+          "rgba(11, 11, 15, 0.84)",
+          "rgba(11, 11, 15, 1)"
+        ]
+      },
+      "shadow-ambient": {
+        "role": "neutral",
+        "displayName": "Queda ambiente",
+        "canonical": "rgba(0, 0, 0, 0.7)",
+        "tonalRamp": [
+          "rgba(0, 0, 0, 0.05)",
+          "rgba(0, 0, 0, 0.1)",
+          "rgba(0, 0, 0, 0.18)",
+          "rgba(0, 0, 0, 0.3)",
+          "rgba(0, 0, 0, 0.45)",
+          "rgba(0, 0, 0, 0.6)",
+          "rgba(0, 0, 0, 0.84)",
+          "rgba(0, 0, 0, 1)"
+        ]
+      },
+      "shadow-floor": {
+        "role": "neutral",
+        "displayName": "Chão da camiseta",
+        "canonical": "rgba(0, 0, 0, 0.55)",
+        "tonalRamp": [
+          "rgba(0, 0, 0, 0.05)",
+          "rgba(0, 0, 0, 0.1)",
+          "rgba(0, 0, 0, 0.18)",
+          "rgba(0, 0, 0, 0.3)",
+          "rgba(0, 0, 0, 0.45)",
+          "rgba(0, 0, 0, 0.6)",
+          "rgba(0, 0, 0, 0.84)",
+          "rgba(0, 0, 0, 1)"
+        ]
+      },
+      "dot-ring": {
+        "role": "neutral",
+        "displayName": "Anel da bolinha de cor",
+        "canonical": "rgba(128, 128, 140, 0.7)",
+        "tonalRamp": [
+          "rgba(128, 128, 140, 0.05)",
+          "rgba(128, 128, 140, 0.1)",
+          "rgba(128, 128, 140, 0.18)",
+          "rgba(128, 128, 140, 0.3)",
+          "rgba(128, 128, 140, 0.45)",
+          "rgba(128, 128, 140, 0.6)",
+          "rgba(128, 128, 140, 0.84)",
+          "rgba(128, 128, 140, 1)"
+        ]
+      },
+      "piece-black": {
+        "role": "neutral",
+        "displayName": "Peça preta (exemplo)",
+        "canonical": "#2b2638",
+        "tonalRamp": [
+          "#0e0c14",
+          "#1a1724",
+          "#2b2638",
+          "#4a4560",
+          "#6c6785",
+          "#9591ab",
+          "#c2bfd2",
+          "#e6e4ee"
+        ]
+      },
+      "piece-white": {
+        "role": "neutral",
+        "displayName": "Peça branca (exemplo)",
+        "canonical": "#f4f2fb",
+        "tonalRamp": [
+          "#3a3a3f",
+          "#68686e",
+          "#939398",
+          "#b8b8bd",
+          "#d4d4d8",
+          "#e8e8ea",
+          "#f4f2fb",
+          "#ffffff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Palavras do slogan do herói ao lado dos numerais, Poppins 800, minúsculas, -0.045em, clamp(2.05rem, 0.4rem + 6.3vw, 4.7rem)."
+      },
+      "headline": {
+        "displayName": "Título de seção",
+        "purpose": "H2 de seção, Poppins 800, minúsculas ou frase, -0.025em e word-spacing 0.1em, clamp(1.9rem, 1.2rem + 3.6vw, 3.9rem)."
+      },
+      "title": {
+        "displayName": "Título de passo",
+        "purpose": "Passos do processo, 800, clamp(1.3rem, 1rem + 1.4vw, 2rem)."
+      },
+      "subtitle": {
+        "displayName": "Subtítulo",
+        "purpose": "Itens do vestiário, casal e rodapé, clamp(1.15rem, 0.9rem + 1.2vw, 1.8rem)."
+      },
+      "body": {
+        "displayName": "Corpo",
+        "purpose": "Poppins 400, 1rem, 1.68, algarismos tabulares. O rem é fluido de 15px a 20px."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Frase de apoio até 38rem, clamp(1rem, 0.9rem + 0.5vw, 1.2rem)."
+      },
+      "step": {
+        "displayName": "Título de bloco do pedido",
+        "purpose": "700, 1.1rem."
+      },
+      "menu": {
+        "displayName": "Menu",
+        "purpose": "Links do cabeçalho, 600, 0.92rem."
+      },
+      "button": {
+        "displayName": "Botão",
+        "purpose": "600, 1rem."
+      },
+      "field": {
+        "displayName": "Campo",
+        "purpose": "Entrada dos campos, 600, 1rem, maiúsculas."
+      },
+      "ui": {
+        "displayName": "UI",
+        "purpose": "Botão pequeno, 600, 0.95rem."
+      },
+      "ui-seg": {
+        "displayName": "Aba de peça",
+        "purpose": "600, 0.92rem."
+      },
+      "ui-narrow": {
+        "displayName": "Aba estreita",
+        "purpose": "600, 0.88rem, abaixo de 30rem."
+      },
+      "small": {
+        "displayName": "Texto pequeno",
+        "purpose": "Caixa de status e apoio do pedido, 0.97rem."
+      },
+      "caption": {
+        "displayName": "Legenda",
+        "purpose": "Dica sob as cores de exemplo, 0.8rem."
+      },
+      "label": {
+        "displayName": "Rótulo de formulário",
+        "purpose": "Rótulos de campos e legendas de seletores, 600, 0.72rem, +0.08em, maiúsculas. Só em formulário."
+      },
+      "cue": {
+        "displayName": "Convite a rolar",
+        "purpose": "O texto 'role' do herói, 600, 0.7rem, +0.18em."
+      },
+      "note": {
+        "displayName": "Bilhete",
+        "purpose": "Mansalva, só quando o casal fala."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hover-primary",
+        "value": "0 14px 26px -10px rgba(122, 60, 255, 0.65)",
+        "purpose": "Hover do botão primário; no tinta rgba(11, 11, 15, 0.6)."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px #7a3cff",
+        "purpose": "Foco visível; sobre o dia o contorno é preto e o anel externo #8f5cff."
+      },
+      {
+        "name": "portrait-ambient",
+        "value": "0 22px 40px -18px rgba(0, 0, 0, 0.7)",
+        "purpose": "Queda ambiente da moldura do retrato do casal."
+      },
+      {
+        "name": "color-selected-ring",
+        "value": "0 0 0 2px #14121c, 0 0 0 3.5px rgba(255, 255, 255, 0.7)",
+        "purpose": "Anel duplo da bolinha de cor selecionada."
+      },
+      {
+        "name": "shirt-floor",
+        "value": "elipse rgba(0, 0, 0, 0.55), 4.5% de altura",
+        "purpose": "Chão sob a camiseta que gira (preenchimento, não sombra)."
+      },
+      {
+        "name": "twill-offset",
+        "value": "translate(2.5px, 3.5px)",
+        "purpose": "Deslocamento da camada de baixo do aplique (não é sombra)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entradas, revelações, aplique e hover dos botões."
+      },
+      {
+        "name": "ease-quart",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Alternativa de final mais seco."
+      },
+      {
+        "name": "reveal",
+        "value": "0.7s, translateY(18px) para 0, opacidade 0 para 1",
+        "purpose": "Revelação ao rolar, ativa só com a classe js."
+      },
+      {
+        "name": "twill-enter",
+        "value": "camada de baixo 0.7s de (-7px,-9px); camada de cima e pesponto 0.5s com 0.18s de atraso",
+        "purpose": "Aplique pousando em duas camadas."
+      },
+      {
+        "name": "splash-wipe",
+        "value": "1.25s cubic-bezier(0.7, 0, 0.2, 1), círculo de máscara de 0 a 175vmax",
+        "purpose": "Virada da entrada. Uma vez por sessão, nunca com reduzir movimento."
+      },
+      {
+        "name": "line-up",
+        "value": "0.95s var(--ease-out), translateY(105%) para 0, linhas com 0.12s de escalonamento",
+        "purpose": "Linhas do slogan subindo em máscara."
+      },
+      {
+        "name": "hero-tilt",
+        "value": "perspective(1100px) rotateX(ty*-12deg) rotateY(tx*16deg), suavização 0.085 por quadro",
+        "purpose": "Inclinação da peça e dos corações seguindo o mouse; só mouse fino."
+      },
+      {
+        "name": "hero-parallax",
+        "value": "translateY(hs*46px) rotate(hs*-4deg)",
+        "purpose": "A peça sobe enquanto o herói sai de cena."
+      },
+      {
+        "name": "shirt-turn",
+        "value": "rotateY(progresso*720deg), perspectiva 1200px, suavização 0.14 por quadro, trilho de 400svh",
+        "purpose": "Camiseta girando com a rolagem; só com js e sem rm."
+      },
+      {
+        "name": "magnet",
+        "value": "translate(dx*12px, dy*9px - 2px)",
+        "purpose": "Botões que puxam o cursor; só mouse fino."
+      },
+      {
+        "name": "cursor",
+        "value": "ponto 8px, anel 38px, mix-blend-mode: difference, escala 1 / 1.7 / 2.3",
+        "purpose": "Cursor próprio; só mouse fino e sem reduzir movimento."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "30rem"
+      },
+      {
+        "name": "tablet",
+        "value": "52rem"
+      },
+      {
+        "name": "desktop",
+        "value": "62rem"
+      }
+    ],
+    "rounded": [
+      {
+        "name": "sm",
+        "value": "3px"
+      },
+      {
+        "name": "md",
+        "value": "4px"
+      },
+      {
+        "name": "lg",
+        "value": "6px"
+      },
+      {
+        "name": "field",
+        "value": "14px"
+      },
+      {
+        "name": "panel-sm",
+        "value": "18px"
+      },
+      {
+        "name": "panel",
+        "value": "22px"
+      },
+      {
+        "name": "pill",
+        "value": "999px"
+      },
+      {
+        "name": "circle",
+        "value": "50%"
+      }
+    ],
+    "rootSize": "clamp(15px, 12.8px + 0.35vw, 20px)"
+  },
+  "components": [
+    {
+      "name": "Botão primário (pílula costurada)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal, pílula roxa com costura tracejada recuada 4px.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\"><span>Pedir no WhatsApp</span></a>",
+      "css": ".ds-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;min-height:3.1rem;padding:.8rem 1.5rem;border:0;border-radius:999px;font:600 1rem/1.1 'Poppins',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),background-color .2s,box-shadow .25s cubic-bezier(.16,1,.3,1)}.ds-btn-primary{background:#7a3cff;color:#fff}.ds-btn-primary::before{content:'';position:absolute;inset:4px;border:1.5px dashed rgba(255,255,255,.55);border-radius:999px;pointer-events:none}.ds-btn-primary:hover{background:#6a2bef;transform:translateY(-2px);box-shadow:0 14px 26px -10px rgba(122,60,255,.65)}.ds-btn-primary:active{transform:scale(.985);box-shadow:none}.ds-btn:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #7a3cff}"
+    },
+    {
+      "name": "Botão tinta",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Ação principal em pílula sobre o chão dia.",
+      "html": "<a class=\"ds-btn-ink\" href=\"#\"><span>Chamar no WhatsApp</span></a>",
+      "css": ".ds-btn-ink{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;min-height:3.1rem;padding:.8rem 1.5rem;border:0;border-radius:999px;font:600 1rem/1.1 'Poppins',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:transform .25s cubic-bezier(.16,1,.3,1),background-color .2s,box-shadow .25s cubic-bezier(.16,1,.3,1);background:#0b0b0f;color:#fff}.ds-btn-ink::before{content:'';position:absolute;inset:4px;border:1.5px dashed rgba(255,255,255,.45);border-radius:999px;pointer-events:none}.ds-btn-ink:hover{background:#1e1a2b;transform:translateY(-2px);box-shadow:0 14px 26px -10px rgba(11,11,15,.6)}.ds-btn-ink:focus-visible{outline:3px solid #0b0b0f;outline-offset:3px;box-shadow:0 0 0 6px #8f5cff}"
+    },
+    {
+      "name": "Botão fantasma",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Ação secundária em pílula sobre o escuro.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\"><span>Ver as peças</span></a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;min-height:3.1rem;padding:.8rem 1.5rem;border-radius:999px;background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45);font:600 1rem/1.1 'Poppins',system-ui,sans-serif;text-decoration:none;transition:background-color .2s}.ds-btn-ghost:hover{background:rgba(255,255,255,.1)}.ds-btn-ghost:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #7a3cff}"
+    },
+    {
+      "name": "Aplique (numeral em duas camadas)",
+      "kind": "custom",
+      "refersTo": "typography.display",
+      "description": "Lettering assinatura: camada de baixo deslocada, de cima e pesponto tracejado.",
+      "html": "<svg class=\"ds-twill\" viewBox=\"0 0 92 112\" role=\"img\" aria-label=\"2\" width=\"92\" height=\"112\"><text class=\"ds-tw-under\" x=\"46\" y=\"104\" font-size=\"140\">2</text><text class=\"ds-tw-top\" x=\"46\" y=\"104\" font-size=\"140\">2</text><text class=\"ds-tw-stitch\" x=\"46\" y=\"104\" font-size=\"140\">2</text></svg>",
+      "css": ".ds-twill{overflow:visible;--tw-under:#7a3cff;--tw-top:#fff;--tw-stitch:#0b0b0f}.ds-twill text{font-family:'Poppins',system-ui,sans-serif;font-weight:800;text-anchor:middle}.ds-tw-under{fill:var(--tw-under);stroke:var(--tw-under);stroke-width:7;stroke-linejoin:round;paint-order:stroke;transform:translate(2.5px,3.5px)}.ds-tw-top{fill:var(--tw-top)}.ds-tw-stitch{fill:none;stroke:var(--tw-stitch);stroke-width:1.3;stroke-dasharray:3.2 3;stroke-linejoin:round}"
+    },
+    {
+      "name": "Seletor de peça (pílula)",
+      "kind": "chip",
+      "refersTo": "segment-selected",
+      "description": "Opção em pílula tracejada; selecionada vira branca com texto preto.",
+      "html": "<span class=\"ds-seg\"><span class=\"ds-seg-opt\">Camiseta</span><span class=\"ds-seg-opt is-on\">Ecobag</span></span>",
+      "css": ".ds-seg{display:flex;gap:.4rem;background:#14121c;padding:1rem}.ds-seg-opt{display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;padding:.5rem .8rem;border:1.5px dashed rgba(255,255,255,.18);border-radius:999px;font:600 .92rem 'Poppins',system-ui,sans-serif;color:rgba(255,255,255,.84);cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}.ds-seg-opt:hover{border-color:rgba(255,255,255,.5)}.ds-seg-opt.is-on{background:#fff;color:#0b0b0f;border:1.5px solid #fff}"
+    },
+    {
+      "name": "Campo sobre escuro",
+      "kind": "input",
+      "refersTo": "field-dark",
+      "description": "Nome e número do herói, entrada em maiúsculas, raio de 14px.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-n\">Nome</label><input id=\"ds-n\" type=\"text\" placeholder=\"Digite um nome\"></div>",
+      "css": ".ds-field{background:#14121c;padding:1rem;border-radius:22px}.ds-field label{display:block;margin-bottom:.3rem;font:600 .72rem 'Poppins',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.66)}.ds-field input{width:100%;min-height:3rem;padding:.55rem .85rem;background:#0b0b0f;color:#fff;border:1.5px solid rgba(255,255,255,.18);border-radius:14px;font:600 1rem/1.2 'Poppins',system-ui,sans-serif;text-transform:uppercase;transition:border-color .2s}.ds-field input::placeholder{color:rgba(255,255,255,.5);text-transform:none;font-weight:500}.ds-field input:hover{border-color:rgba(255,255,255,.45)}.ds-field input:focus{border-color:#8f5cff;outline:none}.ds-field input:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #7a3cff}"
+    },
+    {
+      "name": "Navegação",
+      "kind": "nav",
+      "refersTo": "typography.display",
+      "description": "Links em Poppins 600 com pesponto roxo que se desenha no hover.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Peças</a><a href=\"#\">Como funciona</a><a href=\"#\">Pedir</a></nav>",
+      "css": ".ds-nav{display:flex;gap:2rem;padding:1rem;background:#0b0b0f}.ds-nav a{display:inline-flex;align-items:center;min-height:2.75rem;font:600 .92rem/1 'Poppins',system-ui,sans-serif;letter-spacing:-.005em;text-decoration:none;color:rgba(255,255,255,.84);background-image:repeating-linear-gradient(90deg,#8f5cff 0 5px,transparent 5px 9px);background-repeat:no-repeat;background-position:0 calc(100% - .5rem);background-size:0 2px;transition:background-size .35s cubic-bezier(.16,1,.3,1),color .2s}.ds-nav a:hover{color:#fff;background-size:100% 2px}.ds-nav a:focus-visible{outline:3px solid #fff;outline-offset:3px;box-shadow:0 0 0 6px #7a3cff}"
+    },
+    {
+      "name": "Bilhete da mensagem",
+      "kind": "card",
+      "refersTo": "ticket",
+      "description": "Prévia da mensagem que vai para o WhatsApp, sobre o chão dia.",
+      "html": "<div class=\"ds-ticket\"><p class=\"ds-ticket-title\">A mensagem que vai para o WhatsApp</p><p class=\"ds-ticket-body\">Oi! Quero 10 camisetas...</p></div>",
+      "css": ".ds-ticket{padding:1rem 1.1rem 1.1rem;background:#efe9ff;border-radius:4px}.ds-ticket-title{margin:0 0 .5rem;font:700 .8rem 'Poppins',system-ui,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#4a4560}.ds-ticket-body{margin:0;font:400 1rem/1.5 'Poppins',system-ui,sans-serif;color:#0b0b0f;white-space:pre-wrap}"
+    },
+    {
+      "name": "Painel de controles",
+      "kind": "card",
+      "refersTo": "controls-panel",
+      "description": "Painel do herói com campos, peça e cor; raio de 22px e borda tracejada.",
+      "html": "<div class=\"ds-panel\"><label>Nome</label><div class=\"ds-panel-in\">Digite um nome</div><div class=\"ds-panel-seg\"><span>Camiseta</span><span class=\"is-on\">Ecobag</span></div></div>",
+      "css": ".ds-panel{display:grid;gap:.8rem;width:min(100%,31rem);padding:1.1rem;background:#14121c;border:1.5px dashed rgba(255,255,255,.18);border-radius:22px;color:rgba(255,255,255,.84);font-family:'Poppins',system-ui,sans-serif}.ds-panel label{font:600 .72rem 'Poppins',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.66)}.ds-panel-in{min-height:3rem;padding:.55rem .85rem;background:#0b0b0f;border:1.5px solid rgba(255,255,255,.18);border-radius:14px;color:rgba(255,255,255,.5);display:flex;align-items:center}.ds-panel-seg{display:flex;gap:.4rem}.ds-panel-seg span{flex:1;display:flex;align-items:center;justify-content:center;min-height:2.75rem;border:1.5px dashed rgba(255,255,255,.18);border-radius:999px;font:600 .92rem 'Poppins',sans-serif}.ds-panel-seg .is-on{background:#fff;color:#0b0b0f;border:1.5px solid #fff}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Camisa de turma",
+    "overview": "O site é o verso de uma camisa preta de turma. O chão é jersey preto, com uma trama de furinhos quase invisível que acende perto do mouse. Só existem duas tintas além do preto, o roxo e o branco, e tudo o que é \"estampado\" (numerais, a peça ao vivo) é lettering de aplique: uma camada de baixo, uma de cima e um pesponto tracejado na borda. O slogan vira número de uniforme (2, 2, 1) seguido de palavras em minúsculas. A personalidade é pessoal, calorosa e moderna, nunca séria demais. O casal fala por bilhetes manuscritos em Mansalva, a única voz informal da página.\n\nA densidade é generosa: seções com respiro grande, uma coluna de leitura estreita (lead com 38rem) e blocos grandes de cor. O chão percorre preto, roxo e dia (branco lilás) ao longo da rolagem, como se a camisa virasse de lado, e uma seção de palco fixo faz a camiseta girar de frente para as costas com a rolagem. O que costura o sistema é o detalhe de ateliê: tracejado (pesponto) em vez de linha sólida em bordas decorativas, costura tracejada dentro das pílulas dos botões, cantos de registro na área de estampa.",
+    "keyCharacteristics": [
+      "Jersey preto como chão padrão, roxo e dia como viradas de seção.",
+      "Duas tintas e o preto; o branco é a tinta clara, não um neutro de fundo.",
+      "Aplique em duas camadas com pesponto tracejado para numerais e a estampa das peças.",
+      "Uma só família (Poppins), títulos em minúsculas com peso 800 e tracking negativo.",
+      "Pílulas (999px) costuradas para botões e abas; campos e painéis em raios de 14, 18 e 22px.",
+      "Movimento que explica: o aplique pousa em duas camadas, a camiseta gira com a rolagem, a peça acompanha o mouse."
+    ],
+    "rules": [
+      {
+        "name": "A Regra das Duas Tintas",
+        "body": "Fora o preto, só existem roxo e branco. Uma terceira cor de marca não entra; as cores de peças de exemplo (preta, branca, roxa) são ilustrativas e ficam dentro da peça.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Chão",
+        "body": "Cada seção declara um chão (ground-ink, ground-purple ou ground-day) e o texto, o foco e os títulos obedecem a ele. Não se pinta fundo solto fora desses três.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Bilhete",
+        "body": "Mansalva aparece só quando o casal fala, em tamanho de nota. Nunca em título, botão ou corpo.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra do Número",
+        "body": "Numerais e iniciais de destaque são aplique (componente de duas camadas), não texto solto.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Família Única",
+        "body": "Poppins faz tudo; um segundo tipo não entra. Contraste se faz com peso (800 contra 400), escala e tracking negativo nos títulos.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra do Plano",
+        "body": "Superfícies são planas em repouso. Sombra só por estado (hover, foco, seleção) ou como queda ambiente do retrato.",
+        "section": "elevation"
+      },
+      {
+        "name": "A Regra da Profundidade em Z",
+        "body": "Profundidade se faz com translação e inclinação em Z (peça, corações, camiseta), não com sombras empilhadas.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do declarar o chão da seção (ground-ink, ground-purple ou ground-day) e deixar texto, títulos e foco herdarem dele.",
+      "Do compor numerais de destaque e a estampa das peças como aplique em duas camadas, com pesponto tracejado.",
+      "Do usar #8f5cff, não #7a3cff, para qualquer roxo fino ou pequeno sobre o preto.",
+      "Do usar pílulas (999px) para botões e abas, e 14, 18 ou 22px para campos e painéis; bordas decorativas tracejadas de 1.5px.",
+      "Do compor títulos em Poppins 800, minúsculas ou caixa de frase, com tracking negativo.",
+      "Do dimensionar em rem, que herda a escala fluida do html (15px a 20px).",
+      "Do usar --ease-out (cubic-bezier(0.16, 1, 0.3, 1)) para entradas e --ease-quart (cubic-bezier(0.25, 1, 0.5, 1)) quando for necessário um fim mais seco; efeitos de mouse só com mouse fino e respeitando reduzir movimento.",
+      "Do manter alvos de toque de pelo menos 2.75rem e foco visível em dois anéis."
+    ],
+    "donts": [
+      "Don't introduzir uma terceira cor de marca além de roxo e branco sobre o preto.",
+      "Don't introduzir uma segunda família tipográfica; Mansalva só nas notas do casal.",
+      "Don't abrir seções com a fileira de cartões iguais nem com o mockup de camiseta ao lado de um título; a peça é viva e ligada aos controles.",
+      "Don't usar sombra em repouso nem cantos retos e pequenos em painéis novos.",
+      "Don't inventar preço, prazo, técnica, foto ou depoimento; o conteúdo ainda não informado fica em espaço reservado rotulado.",
+      "Don't esconder conteúdo atrás de JavaScript: revelações e o giro da camiseta só atuam com a classe js e sem rm, e a leitura funciona sem eles."
+    ]
+  }
+}
